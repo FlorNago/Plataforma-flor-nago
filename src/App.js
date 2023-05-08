@@ -1,10 +1,12 @@
-import TelaCadastro from "./componentes/TelaCadastro/TelaCadastro";
-import TelaLogin from "./componentes/TelaLogin/TelaLogin";
+import { BrowserRouter } from "react-router-dom";
+import TelaLogin from "./Pages/TelaLogin/TelaLogin";
+import TelaCadastro from "./Pages/TelaCadastro/TelaCadastro"
 
 export default function App() {
   return (
-    <div className="pagina-inicial">
-      <TelaLogin />
+    <div>
+      <TelaCadastro />
     </div>
+    
   )
 }
