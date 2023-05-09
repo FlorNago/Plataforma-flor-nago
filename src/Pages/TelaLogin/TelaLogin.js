@@ -9,13 +9,14 @@ export default function TelaLogin(props) {
             <div class="box">
                 <img src={logofn} className='logo' alt="Logo da plataforma flor nagô" />
                 <form className='forms' action="submit">
-                    <label htmlFor="">{props.label}</label>
+                    <label htmlFor="">Email</label>
                     <input type="text" placeholder='Digite o seu Email' />
                     <br />
                     <label htmlFor="">Senha</label>
                     <input type="password" placeholder='Digite sua senha' />
                     <br />
                     <button className='botao' type="submit">Login</button>
+                    <br />
                     <Link to="/cadastro">Não tem conta? Se Inscreva</Link>
                 </form>
             </div>
