@@ -16,7 +16,6 @@ export default function TelaLogin(props) {
                     <input type="password" placeholder='Digite sua senha' />
                     <br />
                     <button className='botao' type="submit">Login</button>
-                    <br />
                     <Link to="/cadastro">Não tem conta? Se Inscreva</Link>
                 </form>
             </div>

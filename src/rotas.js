@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import TelaLogin from "./Pages/TelaLogin/TelaLogin";
 import TelaCadastro from "./Pages/TelaCadastro/TelaCadastro";
-import LandingPage from "./Pages/LandingPage/LandingPage";
+import BarraEsquerda from "./componentes/BarraEsquerda";
 
 export const Router = createBrowserRouter([
     {
@@ -14,6 +14,14 @@ export const Router = createBrowserRouter([
     },
     {
         path:"/home",
-        element:<LandingPage />
+        element:<BarraEsquerda 
+        nome="matheus" 
+        nomeusuario="matheus123"
+        posts="5"
+        seguidores="1.000"
+        nota="10"
+        areas="Transcista, cozinheiro..."
+        />
+        
     }
 ])

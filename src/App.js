@@ -1,12 +1,17 @@
 import { BrowserRouter } from "react-router-dom";
 import TelaLogin from "./Pages/TelaLogin/TelaLogin";
 import TelaCadastro from "./Pages/TelaCadastro/TelaCadastro"
+import BarraEsquerda from "./componentes/BarraEsquerda";
 
-export default function App() {
+function App() {
   return (
     <div>
-      <TelaCadastro />
+      
     </div>
-    
+      
+      
+
   )
 }
+
+export default App;
