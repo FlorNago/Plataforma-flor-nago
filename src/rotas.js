@@ -3,6 +3,8 @@ import TelaLogin from "./Pages/TelaLogin/TelaLogin";
 import TelaCadastro from "./Pages/TelaCadastro/TelaCadastro";
 import BarraEsquerda from "./componentes/BarraEsquerda/BarraEsquerda";
 import NavBar from "./componentes/NavBar/Navbar";
+import LandingPage from "./Pages/LandingPage/LandingPage";
+
 
 export const Router = createBrowserRouter([
     {
@@ -28,5 +30,14 @@ export const Router = createBrowserRouter([
     {
         path:"/login",
         element:<TelaLogin />
+    },
+    {
+        path:"/teste",
+        element:
+        <div>
+            <NavBar />
+            <LandingPage />
+        </div>
+        
     }
 ])

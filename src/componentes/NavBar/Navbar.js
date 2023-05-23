@@ -10,8 +10,8 @@ export default function NavBar(props) {
                 <ul>
                     <img className='logo1' src={logofn} alt="" />
                     <li>Sobre</li>
-                    <li>Planos</li>
-                    <li>Cursos</li>
+                    <li>Planos Futuros</li>
+                    <li>Eventos</li>
                     <li>FAQ</li>
                     <br />
                     <li><Link to="/login">Login</Link></li>

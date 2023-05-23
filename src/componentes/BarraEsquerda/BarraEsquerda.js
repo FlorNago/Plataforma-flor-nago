@@ -1,6 +1,9 @@
+import './BarraEsquerda.css'
+
 export default function BarraEsquerda(props) {
     return (
         <div className="container3">
+            
             <img src={props.foto} alt="" />
             <h3>{props.nome}</h3>
             <h5>{props.nomeusuario} </h5>

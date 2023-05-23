@@ -1,7 +1,6 @@
 nav{
     width: 100vw;
     height: 55px;
-    background: #DCDCDC;
 }
 
 ul img{
@@ -19,7 +18,6 @@ li{
 }
 
 button{
-    border: solid 2px red;
     border: none;
     cursor: pointer;
     height: 40px;
