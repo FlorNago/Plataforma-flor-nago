@@ -1,11 +1,16 @@
 import './TelaCadastro.css'
-import logofn from "../../Assets/Image/logofn.svg"
+import logofn from "../../Assets/Image/Logo.svg"
+import { Link } from 'react-router-dom'
 
 export default function TelaCadastro(props) {
     return (
         <div class="container1">
             <div class="box1">
-                <img src={logofn} className='logo' alt="Logo da plataforma flor nagô" />
+                <br />
+                <div className="logo">
+                    <Link to="/"><img src={logofn} alt="Logo da plataforma flor nagô" /></Link>
+                </div>
+                <br />
                 <form className='forms1' action="submit">
                     <label htmlFor="">Nome Completo</label>
                     <input type="text" placeholder='Seu nome completo' />

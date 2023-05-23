@@ -54,3 +54,9 @@ a {
     color: #4E2A5A;
     
 }
+
+.logo{
+    display: flex;
+    justify-content: center;
+
+}

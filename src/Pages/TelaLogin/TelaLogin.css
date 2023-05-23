@@ -8,11 +8,15 @@
 }
 
 .box {
+    display: flex;
+    flex-direction: column;
     width: 400px;
     height: 400px;
     background: #F0FFF0;
     border-radius: 25px;
 }
+
+
 
 form {
     display: flex;
@@ -54,3 +58,10 @@ a {
     color: #4E2A5A;
     
 }
+
+.logo{
+    display: flex;
+    justify-content: center;
+
+}
+
