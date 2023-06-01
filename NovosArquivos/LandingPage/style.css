@@ -47,3 +47,7 @@ button{
     color: #fff;
 }
 
+.forms{
+    display: flex;
+    flex-direction: row;
+}
