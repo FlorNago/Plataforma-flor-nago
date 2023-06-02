@@ -1,0 +1,30 @@
+nav{
+    width: 100vw;
+    height: 55px;
+}
+
+ul img{
+    width: 170px;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+li{
+    display: flex;
+    align-items: center;
+}
+
+.btn_post{
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    border-radius: 100px;
+    background-image: linear-gradient(to right, #FFD84A, #FF6847);
+    color: #000;
+}
+
+
