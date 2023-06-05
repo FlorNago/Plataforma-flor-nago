@@ -1,6 +1,6 @@
-nav{
-    width: 100vw;
-    height: 55px;
+.nav{
+    min-width: 100vw;
+    margin-top: 1rem;
 }
 
 ul img{
@@ -23,8 +23,28 @@ li{
     height: 40px;
     width: 150px;
     border-radius: 100px;
-    background-image: linear-gradient(to right, #FFD84A, #FF6847);
+    background: linear-gradient(to right, #FFD84A, #FF6847);
     color: #000;
+    transition: background 1s;
+}
+
+.btn_post:hover, .btn_post:focus{
+    
+    background: linear-gradient(to right, #FF6847, #FFD84A);
+
 }
 
 
+input{
+    width: 25rem;
+    height: 2rem;
+    padding: 0.2rem;
+    border: solid 1px #000;
+    outline: none;
+    border-radius: 50px;
+}
+
+.icones{
+    display: flex;
+    gap: 2rem;
+}
