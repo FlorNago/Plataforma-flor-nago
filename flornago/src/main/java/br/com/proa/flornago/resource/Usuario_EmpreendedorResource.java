@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value="/usuario-empreendedor")
+@RequestMapping(value="/usuario_empreendedor")
 public class Usuario_EmpreendedorResource {
     @Autowired
     Usuario_EmpreendedorRepository usuarioEmpreendedorRepository;
