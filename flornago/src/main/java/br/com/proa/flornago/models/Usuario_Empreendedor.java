@@ -29,7 +29,7 @@ public class Usuario_Empreendedor {
     @Column(name="ds_negocio")
     private String ds_negocio;
     @Column(name="nr_endereço")
-    private String nr_endereço;
+    private String nr_endereco;
     @Column(name="complemento_endereco")
     private String complemento_endereco;
     @Column(name="arroba_Negocio")
@@ -37,7 +37,7 @@ public class Usuario_Empreendedor {
 
 
     public  Usuario_Empreendedor(){}
-    public Usuario_Empreendedor(Integer id_usuarioMei, Integer id_usuario, Integer telefone_Comercial, Integer cnpj, String email_Comercial, String localizacao, Date horario_Abertura, Date horario_Encerramento, String ds_negocio, String nr_endereço, String complemento_endereco, String arroba_Negocio) {
+    public Usuario_Empreendedor(Integer id_usuarioMei, Integer id_usuario, Integer telefone_Comercial, Integer cnpj, String email_Comercial, String localizacao, Date horario_Abertura, Date horario_Encerramento, String ds_negocio, String nr_endereco, String complemento_endereco, String arroba_Negocio) {
         this.id_usuarioMei = id_usuarioMei;
         this.id_usuario = id_usuario;
         this.telefone_Comercial = telefone_Comercial;
@@ -47,7 +47,7 @@ public class Usuario_Empreendedor {
         this.horario_Abertura = horario_Abertura;
         this.horario_Encerramento = horario_Encerramento;
         this.ds_negocio = ds_negocio;
-        this.nr_endereço = nr_endereço;
+        this.nr_endereco = nr_endereco;
         this.complemento_endereco = complemento_endereco;
         this.arroba_Negocio = arroba_Negocio;
     }
@@ -124,12 +124,12 @@ public class Usuario_Empreendedor {
         this.ds_negocio = ds_negocio;
     }
 
-    public String getNr_endereço() {
-        return nr_endereço;
+    public String getNr_endereco() {
+        return nr_endereco;
     }
 
-    public void setNr_endereço(String nr_endereço) {
-        this.nr_endereço = nr_endereço;
+    public void setNr_endereco(String nr_endereço) {
+        this.nr_endereco = nr_endereço;
     }
 
     public String getComplemento_endereco() {
@@ -160,7 +160,7 @@ public class Usuario_Empreendedor {
                 ", horario_Abertura=" + horario_Abertura +
                 ", horario_Encerramento=" + horario_Encerramento +
                 ", ds_negocio='" + ds_negocio + '\'' +
-                ", nr_endereço='" + nr_endereço + '\'' +
+                ", nr_endereço='" + nr_endereco + '\'' +
                 ", complemento_endereco='" + complemento_endereco + '\'' +
                 ", arruba_Negocio='" + arroba_Negocio + '\'' +
                 '}';
