@@ -34,10 +34,19 @@ public class Usuario_Empreendedor {
     private String complemento_endereco;
     @Column(name="arroba_Negocio")
     private String arroba_Negocio;
+    @Column(name = "status")
+    private Integer status;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_criacao")
+    private Date data_criacao;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_alteracao")
+    private Date data_alteracao;
 
 
     public  Usuario_Empreendedor(){}
-    public Usuario_Empreendedor(Integer id_usuarioMei, Integer id_usuario, Integer telefone_Comercial, Integer cnpj, String email_Comercial, String localizacao, Date horario_Abertura, Date horario_Encerramento, String ds_negocio, String nr_endereco, String complemento_endereco, String arroba_Negocio) {
+
+    public Usuario_Empreendedor(Integer id_usuarioMei, Integer id_usuario, Integer telefone_Comercial, Integer cnpj, String email_Comercial, String localizacao, Date horario_Abertura, Date horario_Encerramento, String ds_negocio, String nr_endereco, String complemento_endereco, String arroba_Negocio, Integer status, Date data_criacao, Date data_alteracao) {
         this.id_usuarioMei = id_usuarioMei;
         this.id_usuario = id_usuario;
         this.telefone_Comercial = telefone_Comercial;
@@ -50,6 +59,9 @@ public class Usuario_Empreendedor {
         this.nr_endereco = nr_endereco;
         this.complemento_endereco = complemento_endereco;
         this.arroba_Negocio = arroba_Negocio;
+        this.status = status;
+        this.data_criacao = data_criacao;
+        this.data_alteracao = data_alteracao;
     }
 
     public Integer getId_usuarioMei() {
@@ -128,8 +140,8 @@ public class Usuario_Empreendedor {
         return nr_endereco;
     }
 
-    public void setNr_endereco(String nr_endereço) {
-        this.nr_endereco = nr_endereço;
+    public void setNr_endereco(String nr_endereco) {
+        this.nr_endereco = nr_endereco;
     }
 
     public String getComplemento_endereco() {
@@ -148,6 +160,30 @@ public class Usuario_Empreendedor {
         this.arroba_Negocio = arroba_Negocio;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getData_criacao() {
+        return data_criacao;
+    }
+
+    public void setData_criacao(Date data_criacao) {
+        this.data_criacao = data_criacao;
+    }
+
+    public Date getData_alteracao() {
+        return data_alteracao;
+    }
+
+    public void setData_alteracao(Date data_alteracao) {
+        this.data_alteracao = data_alteracao;
+    }
+
     @Override
     public String toString() {
         return "Usuario_Empreendedor{" +
@@ -160,9 +196,12 @@ public class Usuario_Empreendedor {
                 ", horario_Abertura=" + horario_Abertura +
                 ", horario_Encerramento=" + horario_Encerramento +
                 ", ds_negocio='" + ds_negocio + '\'' +
-                ", nr_endereço='" + nr_endereco + '\'' +
+                ", nr_endereco='" + nr_endereco + '\'' +
                 ", complemento_endereco='" + complemento_endereco + '\'' +
-                ", arruba_Negocio='" + arroba_Negocio + '\'' +
+                ", arroba_Negocio='" + arroba_Negocio + '\'' +
+                ", status=" + status +
+                ", data_criacao=" + data_criacao +
+                ", data_alteracao=" + data_alteracao +
                 '}';
     }
 }

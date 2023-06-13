@@ -45,7 +45,10 @@ public class Usuario_EmpreendedorResource {
                     usuarioEmpreendedor.getDs_negocio(),
                     usuarioEmpreendedor.getNr_endereco(),
                     usuarioEmpreendedor.getComplemento_endereco(),
-                    usuarioEmpreendedor.getArroba_Negocio()
+                    usuarioEmpreendedor.getArroba_Negocio(),
+                    usuarioEmpreendedor.getStatus(),
+                    usuarioEmpreendedor.getData_criacao(),
+                    usuarioEmpreendedor.getData_alteracao()
             ));
             return new ResponseEntity<>(_usuarioEmp, HttpStatus.CREATED);
         }catch (Exception e){
@@ -69,6 +72,9 @@ public class Usuario_EmpreendedorResource {
             _usuarioEmp.setNr_endereco(usuarioEmpreendedor.getNr_endereco());
             _usuarioEmp.setComplemento_endereco(usuarioEmpreendedor.getComplemento_endereco());
             _usuarioEmp.setArroba_Negocio(usuarioEmpreendedor.getArroba_Negocio());
+            _usuarioEmp.setStatus(usuarioEmpreendedor.getStatus());
+            _usuarioEmp.setData_criacao(usuarioEmpreendedor.getData_criacao());
+            _usuarioEmp.setData_alteracao(usuarioEmpreendedor.getData_alteracao());
 
             return new ResponseEntity<>(usuarioEmpreendedorRepository.save(_usuarioEmp), HttpStatus.OK);
         }else{
