@@ -44,7 +44,7 @@ horario_Encerramento	time,
 ds_negocio				varchar(600)	not null,
 nr_endereço				varchar(10),
 complemento_endereco	varchar(50),
-arruba_Negocio			varchar(100)	not null,
+arroba_Negocio			varchar(100)	not null,
 primary key(id_usuarioMei, id_usuario),
 foreign key (id_usuarioMei) references Usuario(id_usuario)
 );
