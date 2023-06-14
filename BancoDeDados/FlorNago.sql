@@ -33,68 +33,63 @@ foreign key (id_genero) references genero(id_genero)
 );
 
 CREATE TABLE IF NOT EXISTS Usuario_Empreendedor(
-id_usuarioMei 			int     		auto_increment,
+id_usuarioMei 			int     		auto_increment primary key,
 id_usuario				int				not null,
 telefone_Comercial 		int 			not null,
 cnpj					int,
 email_Comercial 		varchar(300)	not null,
 localizacao				varchar(300)	not null,
-status 					int,
 horario_Abertura		time,
 horario_Encerramento	time,
 ds_negocio				varchar(600)	not null,
 nr_endereço				varchar(10),
 complemento_endereco	varchar(50),
-arroba_Negocio			varchar(100)	not null,
-data_criacao 			date			not null,
-data_alteracao 			date 			not null,
-primary key(id_usuarioMei, id_usuario),
-foreign key (id_usuarioMei) references Usuario(id_usuario)
+arruba_Negocio			varchar(100)	not null,
+foreign key (id_usuario) references Usuario(id_usuario)
 );
 
 CREATE TABLE IF NOT EXISTS Usuario_Seguidor(
-id_usuarioSeguidor 		int     		auto_increment,
+id_usuarioSeguidor 		int     		auto_increment primary key,
 id_usuario				int				not null,
 dt_follow				datetime,
-primary key(id_usuarioSeguidor, id_usuario),
 foreign key (id_usuario) references Usuario(id_usuario)
 );
 
 CREATE TABLE IF NOT EXISTS Postagem(
-id_postagem 			int     		auto_increment,
+id_postagem 			int     		auto_increment primary key,
 id_usuario				int				not null,
 ds_postagem				varchar(700),
 img_postagem			longblob,
 dt_postagem				datetime		not null,
-primary key(id_postagem, id_usuario),
 foreign key (id_usuario) references Usuario(id_usuario)
 );
 
 CREATE TABLE IF NOT EXISTS Curtida_Postagem(
-id_UsuarioPostagem 			int     		auto_increment,
+id_curtida 					int 			auto_increment primary key,
+id_UsuarioPostagem 			int     		not null,
 id_UsuarioSeguidor			int				not null,
 curtida						bit				not null,
 dt_curtida					datetime		not null,
-primary key(id_UsuarioPostagem , id_UsuarioSeguidor),
-foreign key (id_UsuarioPostagem) references Postagem(id_postagem )
+foreign key (id_UsuarioPostagem) references Usuario(id_usuario),
+foreign key (id_UsuarioSeguidor) references Usuario_Seguidor(id_UsuarioSeguidor)
 );
 
 CREATE TABLE IF NOT EXISTS Comentario_Postagem(
-id_UsuarioPostagem 			int     		auto_increment,
+id_comentario 				int 			auto_increment primary key,
+id_UsuarioPostagem 			int     		not null,
 id_UsuarioSeguidor			int				not null,
 ds_comentario				varchar(700)	not null,
 dt_curtida					datetime		not null,
-primary key(id_UsuarioPostagem , id_UsuarioSeguidor),
-foreign key (id_UsuarioPostagem) references Postagem(id_postagem)
+foreign key (id_UsuarioPostagem) references Usuario(id_usuario),
+foreign key (id_UsuarioSeguidor) references Usuario_Seguidor(id_UsuarioSeguidor)
 );
 
 CREATE TABLE IF NOT EXISTS Mensagem(
-id_mensagem						int				auto_increment,
+id_mensagem						int				auto_increment primary key,
 ds_mensagem						varchar(500)	not null,
 dt_mensagem						datetime		not null,
 id_UsuarioMensagem				int				not null,
 id_UsuarioSeguidorMensagem		int				not null,
-primary key (id_mensagem),
 foreign key (id_UsuarioMensagem) references Usuario(id_usuario),
 foreign key (id_UsuarioSeguidorMensagem) references Usuario_Seguidor(id_usuarioSeguidor)
 );
