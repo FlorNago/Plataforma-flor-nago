@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    gap: 0.8rem;
+}
+
+.icones-lateral{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+    background-color: #016494;
+    width: 6%;
+    padding: 0.5rem;
+}
+
+.icones-lateral img{
+    width: 2.5rem;
+    border: 2px solid red;
+}
+
+aside {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 16%;
+    height: 100vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: auto;
+    background-color: #F6F6F6;
+    border-radius: 15px;
+}
+
+.nome_user{
+    display: flex;
+    align-items: center;
+    border: 2px solid red;
+    height: 9%;
+}
+
+.text_1{
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.perfil{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.perfil img{
+    width: 3rem;
+    border-radius: 50%;
+    border: 3px solid pink;
+}
+
+.perfil p{
+    font-size: 0.8rem;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+    border: 2px solid red;
+    background-color: #ECE7E7;
+}
+
+.chat{
+    
+    border: 2px solid black;
+    height: 100%;
+}
+
+.envio{
+    border: 2px solid green;
+    display: flex;
+    height: 10%;
+    
+}
+
+.envio input{
+    display: flex;
+    justify-content: center;
+    border: 2px solid blue;
+    outline: none;
+    width: 80%;
+}
