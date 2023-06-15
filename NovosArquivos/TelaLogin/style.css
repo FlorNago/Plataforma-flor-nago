@@ -23,7 +23,8 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 50%;
+    height: 100%;
+
 }
 
 form label {
@@ -44,9 +45,10 @@ form input {
     height: 10%;
 
 }
+
 .botao {
     width: 40%;
-    height: 30%;
+    height: 15%;
     border-radius: 5px;
     background: #4E2A5A;
     color: #fff;
