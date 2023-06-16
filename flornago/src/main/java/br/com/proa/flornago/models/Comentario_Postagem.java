@@ -8,6 +8,8 @@ import java.util.Date;
 @Table(name="Comentario_Postagem")
 public class Comentario_Postagem {
     @Id
+    @Column(name="id_comentario")
+    private Integer id_comentario;
     @Column(name = "id_UsuarioPostagem")
     private Integer id_UsuarioPostagem;
     @Column(name = "id_UsuarioSeguidor")
@@ -19,11 +21,21 @@ public class Comentario_Postagem {
     private Date dt_comentario;
 
     public Comentario_Postagem(){}
-    public Comentario_Postagem(Integer id_UsuarioPostagem, Integer id_UsuarioSeguidor, String ds_comentario, Date dt_comentario) {
+
+    public Comentario_Postagem(Integer id_comentario, Integer id_UsuarioPostagem, Integer id_UsuarioSeguidor, String ds_comentario, Date dt_comentario) {
+        this.id_comentario = id_comentario;
         this.id_UsuarioPostagem = id_UsuarioPostagem;
         this.id_UsuarioSeguidor = id_UsuarioSeguidor;
         this.ds_comentario = ds_comentario;
         this.dt_comentario = dt_comentario;
+    }
+
+    public Integer getId_comentario() {
+        return id_comentario;
+    }
+
+    public void setId_comentario(Integer id_comentario) {
+        this.id_comentario = id_comentario;
     }
 
     public Integer getId_UsuarioPostagem() {
@@ -61,7 +73,8 @@ public class Comentario_Postagem {
     @Override
     public String toString() {
         return "Comentario_Postagem{" +
-                "id_UsuarioPostagem=" + id_UsuarioPostagem +
+                "id_comentario=" + id_comentario +
+                ", id_UsuarioPostagem=" + id_UsuarioPostagem +
                 ", id_UsuarioSeguidor=" + id_UsuarioSeguidor +
                 ", ds_comentario='" + ds_comentario + '\'' +
                 ", dt_comentario=" + dt_comentario +

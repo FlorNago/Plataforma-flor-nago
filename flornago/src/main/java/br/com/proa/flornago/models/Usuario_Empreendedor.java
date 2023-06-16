@@ -9,7 +9,7 @@ import java.util.Date;
 public class Usuario_Empreendedor {
     @Id
     @Column(name="id_usuarioMei")
-    private Integer id_usuarioMei;
+    private Integer id_usuariomei;
     @Column(name="id_usuario")
     private Integer id_usuario;
     @Column(name="telefone_Comercial")
@@ -46,8 +46,8 @@ public class Usuario_Empreendedor {
 
     public  Usuario_Empreendedor(){}
 
-    public Usuario_Empreendedor(Integer id_usuarioMei, Integer id_usuario, Integer telefone_Comercial, Integer cnpj, String email_Comercial, String localizacao, Date horario_Abertura, Date horario_Encerramento, String ds_negocio, String nr_endereco, String complemento_endereco, String arroba_Negocio, Integer status, Date data_criacao, Date data_alteracao) {
-        this.id_usuarioMei = id_usuarioMei;
+    public Usuario_Empreendedor(Integer id_usuariomei, Integer id_usuario, Integer telefone_Comercial, Integer cnpj, String email_Comercial, String localizacao, Date horario_Abertura, Date horario_Encerramento, String ds_negocio, String nr_endereco, String complemento_endereco, String arroba_Negocio, Integer status, Date data_criacao, Date data_alteracao) {
+        this.id_usuariomei = id_usuariomei;
         this.id_usuario = id_usuario;
         this.telefone_Comercial = telefone_Comercial;
         this.cnpj = cnpj;
@@ -65,11 +65,11 @@ public class Usuario_Empreendedor {
     }
 
     public Integer getId_usuarioMei() {
-        return id_usuarioMei;
+        return id_usuariomei;
     }
 
     public void setId_usuarioMei(Integer id_usuarioMei) {
-        this.id_usuarioMei = id_usuarioMei;
+        this.id_usuariomei = id_usuarioMei;
     }
 
     public Integer getId_usuario() {
@@ -187,7 +187,7 @@ public class Usuario_Empreendedor {
     @Override
     public String toString() {
         return "Usuario_Empreendedor{" +
-                "id_usuarioMei=" + id_usuarioMei +
+                "id_usuarioMei=" + id_usuariomei +
                 ", id_usuario=" + id_usuario +
                 ", telefone_Comercial=" + telefone_Comercial +
                 ", cnpj=" + cnpj +

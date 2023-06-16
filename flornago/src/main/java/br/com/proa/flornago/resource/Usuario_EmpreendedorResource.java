@@ -57,8 +57,8 @@ public class Usuario_EmpreendedorResource {
     }
 
     @PutMapping("/AtualizarUsuarioMei/{id_usuarioMei}")
-    public ResponseEntity<Usuario_Empreendedor> updateUsuarioEmpreendedor(@PathVariable("id_usuarioMei") Integer id_usuarioMei, @RequestBody Usuario_Empreendedor usuarioEmpreendedor){
-        Optional<Usuario_Empreendedor> usuarioEmpDados = usuarioEmpreendedorRepository.findById(id_usuarioMei);
+    public ResponseEntity<Usuario_Empreendedor> updateUsuarioEmpreendedor(@PathVariable("id_usuarioMei") Integer id_usuariomei, @RequestBody Usuario_Empreendedor usuarioEmpreendedor){
+        Optional<Usuario_Empreendedor> usuarioEmpDados = usuarioEmpreendedorRepository.findById(id_usuariomei);
         if(usuarioEmpDados.isPresent()){
             Usuario_Empreendedor _usuarioEmp = usuarioEmpDados.get();
             _usuarioEmp.setId_usuario(usuarioEmpreendedor.getId_usuario());
