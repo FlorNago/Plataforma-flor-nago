@@ -10,10 +10,10 @@ public class Comentario_Postagem {
     @Id
     @Column(name="id_comentario")
     private Integer id_comentario;
-    @Column(name = "id_UsuarioPostagem")
-    private Integer id_UsuarioPostagem;
-    @Column(name = "id_UsuarioSeguidor")
-    private Integer id_UsuarioSeguidor;
+    @Column(name = "id_usuario")
+    private Integer id_usuario;
+    @Column(name = "id_usuario_seguidor")
+    private Integer id_usuario_seguidor;
     @Column(name = "ds_comentario")
     private String ds_comentario;
     @Temporal(TemporalType.TIMESTAMP)
@@ -22,10 +22,10 @@ public class Comentario_Postagem {
 
     public Comentario_Postagem(){}
 
-    public Comentario_Postagem(Integer id_comentario, Integer id_UsuarioPostagem, Integer id_UsuarioSeguidor, String ds_comentario, Date dt_comentario) {
+    public Comentario_Postagem(Integer id_comentario, Integer id_usuario, Integer id_usuario_seguidor, String ds_comentario, Date dt_comentario) {
         this.id_comentario = id_comentario;
-        this.id_UsuarioPostagem = id_UsuarioPostagem;
-        this.id_UsuarioSeguidor = id_UsuarioSeguidor;
+        this.id_usuario = id_usuario;
+        this.id_usuario_seguidor = id_usuario_seguidor;
         this.ds_comentario = ds_comentario;
         this.dt_comentario = dt_comentario;
     }
@@ -38,20 +38,20 @@ public class Comentario_Postagem {
         this.id_comentario = id_comentario;
     }
 
-    public Integer getId_UsuarioPostagem() {
-        return id_UsuarioPostagem;
+    public Integer getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId_UsuarioPostagem(Integer id_UsuarioPostagem) {
-        this.id_UsuarioPostagem = id_UsuarioPostagem;
+    public void setId_usuario(Integer id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
-    public Integer getId_UsuarioSeguidor() {
-        return id_UsuarioSeguidor;
+    public Integer getId_usuario_seguidor() {
+        return id_usuario_seguidor;
     }
 
-    public void setId_UsuarioSeguidor(Integer id_UsuarioSeguidor) {
-        this.id_UsuarioSeguidor = id_UsuarioSeguidor;
+    public void setId_usuario_seguidor(Integer id_usuario_seguidor) {
+        this.id_usuario_seguidor = id_usuario_seguidor;
     }
 
     public String getDs_comentario() {
@@ -74,8 +74,8 @@ public class Comentario_Postagem {
     public String toString() {
         return "Comentario_Postagem{" +
                 "id_comentario=" + id_comentario +
-                ", id_UsuarioPostagem=" + id_UsuarioPostagem +
-                ", id_UsuarioSeguidor=" + id_UsuarioSeguidor +
+                ", id_usuario=" + id_usuario +
+                ", id_usuario_seguidor=" + id_usuario_seguidor +
                 ", ds_comentario='" + ds_comentario + '\'' +
                 ", dt_comentario=" + dt_comentario +
                 '}';

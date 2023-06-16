@@ -34,7 +34,7 @@ public class Usuario_EmpreendedorResource {
     public ResponseEntity<Usuario_Empreendedor> createUsuariosEmpreendedores(@RequestBody Usuario_Empreendedor usuarioEmpreendedor){
         try {
             Usuario_Empreendedor _usuarioEmp = usuarioEmpreendedorRepository.save(new Usuario_Empreendedor(
-                    usuarioEmpreendedor.getId_usuarioMei(),
+                    usuarioEmpreendedor.getId_usuario_mei(),
                     usuarioEmpreendedor.getId_usuario(),
                     usuarioEmpreendedor.getTelefone_Comercial(),
                     usuarioEmpreendedor.getCnpj(),
@@ -56,9 +56,9 @@ public class Usuario_EmpreendedorResource {
         }
     }
 
-    @PutMapping("/AtualizarUsuarioMei/{id_usuarioMei}")
-    public ResponseEntity<Usuario_Empreendedor> updateUsuarioEmpreendedor(@PathVariable("id_usuarioMei") Integer id_usuariomei, @RequestBody Usuario_Empreendedor usuarioEmpreendedor){
-        Optional<Usuario_Empreendedor> usuarioEmpDados = usuarioEmpreendedorRepository.findById(id_usuariomei);
+    @PutMapping("/AtualizarUsuarioMei/{id_usuario_mei}")
+    public ResponseEntity<Usuario_Empreendedor> updateUsuarioEmpreendedor(@PathVariable("id_usuario_mei") Integer id_usuario_mei, @RequestBody Usuario_Empreendedor usuarioEmpreendedor){
+        Optional<Usuario_Empreendedor> usuarioEmpDados = usuarioEmpreendedorRepository.findById(id_usuario_mei);
         if(usuarioEmpDados.isPresent()){
             Usuario_Empreendedor _usuarioEmp = usuarioEmpDados.get();
             _usuarioEmp.setId_usuario(usuarioEmpreendedor.getId_usuario());
@@ -81,10 +81,10 @@ public class Usuario_EmpreendedorResource {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("/DeletarUsuarioMei/{id_usuarioMei}")
-    public ResponseEntity<HttpStatus> deleteUsuarioEmpreendedor(@PathVariable("id_usuarioMei") Integer id_usuarioMei){
+    @DeleteMapping("/DeletarUsuarioMei/{id_usuario_mei}")
+    public ResponseEntity<HttpStatus> deleteUsuarioEmpreendedor(@PathVariable("id_usuario_mei") Integer id_usuario_mei){
         try {
-            usuarioEmpreendedorRepository.deleteById(id_usuarioMei);
+            usuarioEmpreendedorRepository.deleteById(id_usuario_mei);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

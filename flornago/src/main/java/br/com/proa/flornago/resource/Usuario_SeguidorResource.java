@@ -34,7 +34,7 @@ public class Usuario_SeguidorResource {
     public ResponseEntity<Usuario_Seguidor> createSeguidor(@RequestBody Usuario_Seguidor usuarioSeguidor){
         try {
             Usuario_Seguidor _seguidor = usuarioSeguidorRepository.save(new Usuario_Seguidor(
-                    usuarioSeguidor.getId_usuarioSeguidor(),
+                    usuarioSeguidor.getId_usuario_seguidor(),
                     usuarioSeguidor.getId_usuario(),
                     usuarioSeguidor.getDt_follow()
             ));
@@ -44,9 +44,9 @@ public class Usuario_SeguidorResource {
         }
     }
 
-    @PutMapping("/AtualizarSeguidor/{id_usuarioSeguidor}")
-    public ResponseEntity<Usuario_Seguidor> updateSeguigor(@PathVariable("id_usuarioSeguidor") Integer id_usuarioSeguidor, @RequestBody Usuario_Seguidor usuarioSeguidor){
-        Optional<Usuario_Seguidor> seguidorDados = usuarioSeguidorRepository.findById(id_usuarioSeguidor);
+    @PutMapping("/AtualizarSeguidor/{id_usuario_seguidor}")
+    public ResponseEntity<Usuario_Seguidor> updateSeguigor(@PathVariable("id_usuario_seguidor") Integer id_usuario_seguidor, @RequestBody Usuario_Seguidor usuarioSeguidor){
+        Optional<Usuario_Seguidor> seguidorDados = usuarioSeguidorRepository.findById(id_usuario_seguidor);
         if(seguidorDados.isPresent()){
             Usuario_Seguidor _seguidor = seguidorDados.get();
             _seguidor.setId_usuario(usuarioSeguidor.getId_usuario());
@@ -57,10 +57,10 @@ public class Usuario_SeguidorResource {
         }
     }
 
-    @DeleteMapping("/DeletarSeguidor/{id_usuarioSeguidor}")
-    public ResponseEntity<HttpStatus> deleteSeguidor(@PathVariable("id_usuarioSeguidor") Integer id_usuarioSeguidor){
+    @DeleteMapping("/DeletarSeguidor/{id_usuario_seguidor}")
+    public ResponseEntity<HttpStatus> deleteSeguidor(@PathVariable("id_usuario_seguidor") Integer id_usuario_seguidor){
         try {
-            usuarioSeguidorRepository.deleteById(id_usuarioSeguidor);
+            usuarioSeguidorRepository.deleteById(id_usuario_seguidor);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

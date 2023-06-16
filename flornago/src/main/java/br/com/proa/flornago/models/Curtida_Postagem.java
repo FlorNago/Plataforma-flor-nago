@@ -10,10 +10,10 @@ public class Curtida_Postagem {
     @Id
     @Column(name = "id_curtida")
     public Integer id_curtida;
-    @Column(name = "id_UsuarioPostagem")
-    public Integer id_UsuarioPostagem;
-    @Column(name = "id_UsuarioSeguidor")
-    public Integer  id_UsuarioSeguidor;
+    @Column(name = "id_usuario")
+    public Integer id_usuario;
+    @Column(name = "id_usuario_seguidor")
+    public Integer  id_usuario_seguidor;
     @Column(name = "curtida")
     public Boolean curtida;
     @Temporal(TemporalType.TIMESTAMP)
@@ -22,10 +22,10 @@ public class Curtida_Postagem {
 
     public Curtida_Postagem(){}
 
-    public Curtida_Postagem(Integer id_curtida, Integer id_UsuarioPostagem, Integer id_UsuarioSeguidor, Boolean curtida, Date dt_curtida) {
+    public Curtida_Postagem(Integer id_curtida, Integer id_usuario, Integer id_usuario_seguidor, Boolean curtida, Date dt_curtida) {
         this.id_curtida = id_curtida;
-        this.id_UsuarioPostagem = id_UsuarioPostagem;
-        this.id_UsuarioSeguidor = id_UsuarioSeguidor;
+        this.id_usuario = id_usuario;
+        this.id_usuario_seguidor = id_usuario_seguidor;
         this.curtida = curtida;
         this.dt_curtida = dt_curtida;
     }
@@ -38,20 +38,20 @@ public class Curtida_Postagem {
         this.id_curtida = id_curtida;
     }
 
-    public Integer getId_UsuarioPostagem() {
-        return id_UsuarioPostagem;
+    public Integer getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId_UsuarioPostagem(Integer id_UsuarioPostagem) {
-        this.id_UsuarioPostagem = id_UsuarioPostagem;
+    public void setId_usuario(Integer id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
-    public Integer getId_UsuarioSeguidor() {
-        return id_UsuarioSeguidor;
+    public Integer getId_usuario_seguidor() {
+        return id_usuario_seguidor;
     }
 
-    public void setId_UsuarioSeguidor(Integer id_UsuarioSeguidor) {
-        this.id_UsuarioSeguidor = id_UsuarioSeguidor;
+    public void setId_usuario_seguidor(Integer id_usuario_seguidor) {
+        this.id_usuario_seguidor = id_usuario_seguidor;
     }
 
     public Boolean getCurtida() {
@@ -74,8 +74,8 @@ public class Curtida_Postagem {
     public String toString() {
         return "Curtida_Postagem{" +
                 "id_curtida=" + id_curtida +
-                ", id_UsuarioPostagem=" + id_UsuarioPostagem +
-                ", id_UsuarioSeguidor=" + id_UsuarioSeguidor +
+                ", id_usuario=" + id_usuario +
+                ", id_usuario_seguidor=" + id_usuario_seguidor +
                 ", curtida=" + curtida +
                 ", dt_curtida=" + dt_curtida +
                 '}';
