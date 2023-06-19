@@ -1,0 +1,189 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../Image/textura-afro.jpeg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container_box{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    
+    
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 600px;
+    background: #FFD84A;
+    border: 6px solid #fff;
+    border-radius: 25px;
+    
+}
+
+
+
+.box1 {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 600px;
+    background: #016494;
+    border: 6px solid #fff;
+    border-radius: 25px;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+
+}
+
+.plano1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #016494;
+    border: 4px solid #FF5647;
+    font-size: x-large;
+    font-weight: bold;
+    width: 40%;
+    height: 10%;
+    border-radius: 50px;
+    color: #fff;
+    
+    
+}
+
+.plano2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4E2252;
+    border: 4px solid #FF5647;
+    font-size: x-large;
+    font-weight: bold;
+    width: 40%;
+    height: 10%;
+    border-radius: 50px;
+    color: #fff;
+    
+
+    
+}
+
+.info{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selo_nago1{
+    display: flex;
+    flex-direction: column;
+}
+
+.selo_nago1 img{
+    padding: 10px;
+}
+
+.selo_nago2{
+    display: flex;
+    flex-direction: column;
+}
+
+.selo_nago2 img{
+    padding: 10px;
+}
+
+.info_plano1 p{
+    padding: 14px;
+    color: #4E2252;
+    border: 1px #016494;
+    font-weight: bold;
+
+
+}
+
+.info_plano2 p{
+    padding: 14px;
+    color: #fff;
+    border: 1px #016494;
+    font-weight: bold;
+
+
+}
+
+.box_plano{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+}
+
+hr{
+    width: 70%;
+    border-color: #4E2252;
+    opacity: 15%;
+}
+
+.preco1{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.preco2{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn1{
+    background-color: #FF5647;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 150px;
+    border-radius: 100px;
+    color: #fff;
+}
+
+.btn2{
+    background-color: #4E2252;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 150px;
+    border-radius: 100px;
+    color: #fff;
+}
+
+
+.preco1 span{
+    color: #016494 ;
+
+}
+
+.preco2 p{
+    color: #fff;
+
+}
+
+.preco2 span{
+    color: #FF5647;
+
+}
+

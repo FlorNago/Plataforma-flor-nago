@@ -1,0 +1,50 @@
+.nav{
+    min-width: 100vw;
+    margin-top: 1rem;
+}
+
+ul img{
+    width: 170px;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+li{
+    display: flex;
+    align-items: center;
+}
+
+.btn_post{
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    border-radius: 100px;
+    background: linear-gradient(to right, #FFD84A, #FF6847);
+    color: #000;
+    transition: background 1s;
+}
+
+.btn_post:hover, .btn_post:focus{
+    
+    background: linear-gradient(to right, #FF6847, #FFD84A);
+
+}
+
+
+input{
+    width: 25rem;
+    height: 2rem;
+    padding: 0.2rem;
+    border: solid 1px #000;
+    outline: none;
+    border-radius: 50px;
+}
+
+.icones{
+    display: flex;
+    gap: 2rem;
+}
