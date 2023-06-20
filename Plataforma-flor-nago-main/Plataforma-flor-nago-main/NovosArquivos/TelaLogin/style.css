@@ -1,0 +1,68 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../Image/textura-afro.jpeg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 400px;
+    background: #F0FFF0;
+    border-radius: 25px;
+}
+
+
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+
+}
+
+form label {
+    display: flex;
+    justify-content: left;
+    width: 60%;
+}
+
+form input {
+    display: flex;
+    justify-content: left;
+    margin-top: 7px;
+    background: #F0FFF0;
+    border: none;
+    border-bottom: solid 2px #4E2A5A;
+    outline: none;
+    width: 60%;
+    height: 10%;
+
+}
+
+.botao {
+    width: 40%;
+    height: 15%;
+    border-radius: 5px;
+    background: #4E2A5A;
+    color: #fff;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    color: #4E2A5A;
+    
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+
+}

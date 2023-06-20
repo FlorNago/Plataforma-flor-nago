@@ -1,0 +1,29 @@
+nav{
+    width: 100vw;
+    height: 55px;
+}
+
+ul img{
+    width: 170px;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+li{
+    display: flex;
+    align-items: center;
+}
+
+button{
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    border-radius: 100px;
+    background: #4E2A5A;
+    color: #fff;
+}
+

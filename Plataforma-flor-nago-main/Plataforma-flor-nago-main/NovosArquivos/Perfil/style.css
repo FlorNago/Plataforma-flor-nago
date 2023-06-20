@@ -1,0 +1,370 @@
+#nav{
+    background-color: #fff;
+    position: fixed;
+    min-width: 100vw;
+    padding: 0.5rem;
+}
+
+.logo1{
+    width: 170px;
+    /*background-image: url(../Image/logo_plataforma.svg);*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-decoration: none;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+li{
+    display: flex;
+    align-items: center;
+}
+
+.btn_post{
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    border-radius: 100px;
+    background: linear-gradient(to right, #FFD84A, #FF6847);
+    color: #000;
+    transition: background 1s;
+}
+
+.btn_post:hover, .btn_post:focus{
+    
+    background: linear-gradient(to right, #FF6847, #FFD84A);
+
+}
+
+
+input{
+    width: 25rem;
+    height: 2rem;
+    padding: 0.2rem;
+    border: solid 1px #000;
+    outline: none;
+    border-radius: 50px;
+}
+
+.icones{
+    display: flex;
+    gap: 2rem;
+}
+
+#icone1{
+   position: relative;
+   background-image: url(../Image/sino.png);
+   background-size: contain;
+   background-repeat: no-repeat;
+   
+}
+
+.container-info{
+    
+    width: 100vw;
+    height: 100vh;
+}
+
+.superior{
+    height: 20%;
+    background-image: url(../Image/textura-afro.jpeg);
+}
+
+
+.barra-esquerda-navegacao {
+    display: grid;
+    gap: 30px;
+}
+
+.barra-esquerda-navegacao li {
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+}
+
+.barra-esquerda-navegacao li img {
+    width: 35px;
+    height: 35px;
+}
+
+.barra-esquerda-navegacao li p {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.barra-esquerda-navegacao .planos {
+    color: #FF5647;
+}
+
+.barra-esquerda .sessao {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.barra-esquerda .sessao img {
+    width: 60px;
+    height: 60px;
+}
+
+.barra-esquerda .sessao .opcoes {
+    display: grid;
+    gap: 6px;
+}
+
+.barra-esquerda .sessao .opcoes button {
+    position: relative;
+    padding: 10px 20px;
+    color: #4E2252;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.barra-esquerda .sessao .opcoes button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+    border: 7px solid transparent;
+    background: linear-gradient(180deg, rgba(255, 86, 71, 1) 0%, rgba(1, 100, 148, 1) 100%) border-box;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+}
+
+#barra_esquerda{
+    position: relative;
+    height: 80%;
+    width: 20%;
+   
+    display: flex;
+    float: left;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+
+
+#centro{
+    position: relative;
+    
+    height: auto;
+    width: 60%;
+    display: flex;
+    float: left;
+    align-items: center;
+    flex-direction: column;
+    justify-content:space-around;
+    
+}
+
+#barra_direita{
+    position: relative;
+  
+    height: 80%;
+    width: 20%;
+    display: flex;
+    float: none;
+}
+
+ 
+.centro .perfil .usuario img {
+    border-radius: 10%;
+    width: 90px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.centro h3 {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.centro h4 {
+    font-size: 14px;
+}
+
+.perfil {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    gap: 18px;
+}
+
+#usuario{
+    position: relative;
+    text-align: center;
+    /*border: 10px solid #4E2252;*/
+    height: 500px;
+    width: 400px;
+    
+
+}
+
+/*#foto_perfil{
+    width: 100%;
+    border: 10px solid #fff;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(68, 104, 176);
+
+}*/
+
+
+#foto_usuario{
+    position: relative;
+    height: 220px;
+    width: 220px;
+    /*background-color: cornflowerblue;*/
+    border-radius: 100%;
+    background-image: url(../Image/fabao.jpg);
+    background-size: cover;
+    margin: auto;
+
+    
+}
+
+
+/*.usuario {
+    text-align: center;
+}
+
+.perfil-info {
+    display: flex;
+    gap: 40px 40px;
+}
+
+.perfil-info li {
+    display: grid;
+    text-align: center;
+}
+
+.perfil-info li h2 {
+    font-size: 13px;
+    font-weight: bold;
+}*/
+
+.pefil-info li p {
+    font-size: 10px;
+    display: flex;
+    gap: 10px;
+    
+}
+
+.perfil-info li {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+    /*border: 1px solid #fff;*/
+}
+
+#postagens{
+    position: relative;
+  
+    height: auto;
+    width: 100%;
+      
+}
+
+#img1{
+    position: relative;
+    background-color: blueviolet;
+    height: 300px;
+    width: 25%;
+    margin: 5px;
+    float: left;
+    background-image: url(../Image/Imagem1.jpeg);
+    background-size: cover;
+    border-radius: 5%;
+    border: #000 1px solid;
+   
+}
+
+#img2{
+    position: relative;
+    background-color: blueviolet;
+    height: 300px;
+    width: 25%;
+    margin: 5px;    
+    float: left;
+    background-image: url(../Image/imagem2.jpeg);
+    background-size: cover;
+    border-radius: 5%;
+    border: #000 1px solid;
+   
+}
+
+#img3{
+    position: relative;
+    background-color: blueviolet;
+    height: 300px;
+    width: 25%;
+    margin: 5px;
+    float: left;
+    background-image: url(../Image/imagem3.jpeg);
+    background-size: cover;
+    border-radius: 5%;
+    border: #000 1px solid;
+   
+}
+
+#img4{
+    position: relative;
+    background-color: blueviolet;
+    height: 300px;
+    width: 25%;
+    margin: 5px;
+    float: left;
+    background-image: url(../Image/Imagem1.jpeg);
+    background-size: cover;
+    border-radius: 5%;
+    border: #000 1px solid;
+   
+}
+
+#img5{
+    position: relative;
+    background-color: blueviolet;
+    height: 300px;
+    width: 25%;
+    margin: 5px;
+    float: left;
+    background-image: url(../Image/imagem2.jpeg);
+    background-size: cover;
+    border-radius: 5%;
+    border: #000 1px solid;
+   
+}
+
+#img6{
+    position: relative;
+    background-color: blueviolet;
+    height: 300px;
+    width: 25%;
+    margin: 5px;
+    float: left;
+    background-image: url(../Image/imagem3.jpeg);
+    background-size: cover;
+    border-radius: 5%;
+    border: #000 1px solid;
+   
+}
+
+#contatos{
+    position: relative;
+    height: 300px;
+    width: 30%;
+    background-color: #4E2252;
+}
+
+
