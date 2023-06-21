@@ -9,7 +9,6 @@ export const authOptions = {
     console.log(credentials)
     // Verificação basica se o usuario colocou algo
     if (!credentials.email || !credentials.senha) {
-     console.log("erro, sem ifnroacao")
      throw new Error("Por favor, preencha todos os campos")
      return
     }
@@ -20,12 +19,9 @@ export const authOptions = {
      credentials.email !== "email@exemplo.com" ||
      credentials.senha !== "teste"
     ) {
-     console.log("email ou senhas invalidos")
      throw new Error("Email ou senha invalidos")
      return
     }
-
-    console.log("sucesso!")
 
     // Aqui seria quando o login é bem sucedido
     // O back-end vai retornar o objeto do usuario
