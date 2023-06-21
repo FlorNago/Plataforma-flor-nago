@@ -1,0 +1,113 @@
+.container4 {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.box2 {
+ display: flex;
+ justify-content: center;
+ flex-direction: column;
+ align-items: flex-start;
+ width: 60vw;
+ height: 90vh;
+}
+
+.container4 img {
+ width: 70%;
+ border-radius: 100rem;
+ background: linear-gradient(to bottom left, #ff5647, #ffc947);
+}
+
+.nav {
+ width: 100vw;
+ height: 55px;
+}
+
+.ul img {
+ width: 170px;
+}
+
+.ul {
+ margin-top: 8px;
+ display: flex;
+ justify-content: space-around;
+}
+
+.li {
+ display: flex;
+ align-items: center;
+}
+
+.a {
+ text-decoration: none;
+}
+
+.btn_cad {
+ border: none;
+ cursor: pointer;
+ height: 40px;
+ width: 150px;
+ border-radius: 100px;
+ background: #4e2a5a;
+ color: #ffc947;
+}
+
+.btn_cad a {
+ color: #ffc947;
+}
+
+.btn {
+ width: 55%;
+ display: flex;
+ gap: 2rem;
+}
+
+.btn1 {
+ border: none;
+ cursor: pointer;
+ height: 40px;
+ width: 150px;
+ border-radius: 100px;
+ background: #4e2a5a;
+ color: #ffc947;
+}
+
+.btn2 {
+ border: none;
+ cursor: pointer;
+ height: 40px;
+ width: 150px;
+ border-radius: 100px;
+ background: #fff;
+ color: #000;
+ border: 1px solid #000;
+}
+
+.forms {
+ display: flex;
+ flex-direction: row;
+}
+
+.h1 {
+ font-size: 72px;
+ color: #016494;
+ font-weight: bolder;
+}
+
+.span {
+ color: #ff5647;
+}
+
+.h5 {
+ width: 55%;
+ color: #4e2a5a;
+ font-size: 20px;
+}
+
+.modelo {
+ width: 360px;
+ height: 520px;
+ box-shadow: 79.53359985351562px 3.9766805171966553px 89.47531127929688px 0px
+  rgba(0, 0, 0, 0.6);
+}

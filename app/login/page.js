@@ -3,7 +3,7 @@ import Background from "@/imagens/Background.jpg";
 import FlornagoLogo from "@/imagens/logo_plataforma.svg";
 import MulherFlorNago from "@/imagens/FlorLogoFinal.svg";
 
-import FormularioLogin from "@/app/components/FormularioLogin";
+import FormularioLogin from "@/components/FormularioLogin";
 
 export default function Login() {
   return (

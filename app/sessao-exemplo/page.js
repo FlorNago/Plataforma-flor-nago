@@ -2,22 +2,23 @@ import Link from "next/link";
 import { headers } from "next/headers"
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../app/api/auth/[...nextauth]/route";
-import BotaoLogOut from "../components/LogOutComponent";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import BotaoLogOut from "@/components/LogOutComponent";
+import UserComponent from "@/components/SessionComponent";
 
-async function Publicacao() {
-  const response = await fetch("http://localhost:3000/api/post", {
-    method: "POST",
-    headers: headers()
-  })
+// async function Publicacao() {
+//   const response = await fetch("http://localhost:3000/api/post", {
+//     method: "POST",
+//     headers: headers()
+//   })
 
-  const data = await response.json()
-  console.log(response.status, data)
-}
+//   const data = await response.json()
+//   console.log(response.status, data)
+// }
 
 export default async function SessaoStatus() {
   const session = await getServerSession(authOptions);
-  await Publicacao()
+  // await Publicacao()
 
   return (
     <section>
@@ -34,6 +35,8 @@ export default async function SessaoStatus() {
       ) : (
         <Link href="/login">Iniciar sessão</Link>
       )}
+      <h1>Usando rendereização do cliente</h1>
+      <UserComponent />
     </section>
   );
 }
