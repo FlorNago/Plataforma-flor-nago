@@ -6,35 +6,25 @@ export const authOptions = {
   CredentialsProviders({
    name: "credentials",
    authorize: async (credentials) => {
-    console.log(credentials)
     // Verificação basica se o usuario colocou algo
     if (!credentials.email || !credentials.senha) {
      throw new Error("Por favor, preencha todos os campos")
-     return
     }
 
-    // Aqui seria ver se o usuário existe
-    // O back-end também vai verificar se o email e a senha se coincide no banco de dados
-    if (
-     credentials.email !== "email@exemplo.com" ||
-     credentials.senha !== "teste"
-    ) {
-     throw new Error("Email ou senha invalidos")
-     return
+    const response = await fetch(`${process.env.BACKEND_URL}/autenticacao/login`, {
+        method: "POST",
+        body: JSON.stringify(credentials),
+        headers: { "Content-Type": "application/json" },
+    })
+
+    const data = await response.json()
+
+    if (response.status !== 200) {
+        throw new Error(data.message)
     }
 
-    // Aqui seria quando o login é bem sucedido
-    // O back-end vai retornar o objeto do usuario
-    const user = {
-     id: 1,
-     name: "teste",
-     email: "email@exemplo.com",
-     cargo: "profissional",
-     pao: "pao de queijo",
-    }
 
-    // Por fim, retorna o objeto do usuário
-    return user
+    return data
    },
   }),
  ],
