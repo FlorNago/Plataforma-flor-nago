@@ -25,7 +25,7 @@ export default function FormularioRegistro() {
 
   toast.warn("Realizando cadastro, aguarde...")
 
-  const response = await fetch("http://localhost:3000/api/registro", {
+  const response = await fetch("/api/registro", {
    method: "POST",
    headers: { "Content-Type": "application/json" },
    body: JSON.stringify({
@@ -34,7 +34,6 @@ export default function FormularioRegistro() {
    }),
   })
 
-  console.log(response.status)
   if (response.status !== 201) {
    const data = await response.json()
    toast.error(data.message)
