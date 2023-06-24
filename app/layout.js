@@ -12,6 +12,18 @@ const poppins = Poppins({
 export const metadata = {
  title: "Flor Nagô",
  description: "Onde nossa arte é a sua beleza!",
+ icons: {
+    icon: [
+        "/favicon.ico"
+    ],
+    apple: [
+        "/apple-touch-icon.png?v=4"
+    ],
+    shortcut: [
+        "/apple-touch-icon.png?v=4"
+    ]
+ },
+ manifest: "/site.webmanifest"
 }
 
 export default function RootLayout({ children }) {
