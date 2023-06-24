@@ -7,7 +7,7 @@ export const authOptions = {
    name: "credentials",
    authorize: async (credentials) => {
     // Verificação basica se o usuario colocou algo
-    if (!credentials.email || !credentials.senha) {
+    if (!credentials.email || !credentials.password) {
      throw new Error("Por favor, preencha todos os campos")
     }
 

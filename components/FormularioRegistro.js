@@ -11,13 +11,13 @@ export default function FormularioRegistro() {
  const [isProfessional, setIsProfessional] = useState(false)
  const [formularioRegistro, setFormularioRegistro] = useState({
   email: "",
-  senha: "",
-  confirmarSenha: "",
-  dataNascimento: "",
+  password: "",
+  confirm_password: "",
+  date_birth: "",
   cpf: "",
   instagram: "",
-  segmento: [],
-  celular: "",
+  segments: [],
+  phone_number: "",
  })
 
  async function onSubmit(event) {

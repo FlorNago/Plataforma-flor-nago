@@ -18,7 +18,10 @@ function LoggedInComponent() {
     Acessar
    </Link>
 
-   <button className="block py-3 w-full text-center text-gray-700 border rounded-lg md:border-none" onClick={() => signOut()}>
+   <button
+    className="block py-3 w-full text-center text-gray-700 border rounded-lg md:border-none"
+    onClick={() => signOut()}
+   >
     Sair
    </button>
   </div>
@@ -57,11 +60,15 @@ export default () => {
   { title: "FAQ", path: "/faq" },
  ]
 
- if (pathname.startsWith("/login") || pathname.startsWith("/signup") || pathname.startsWith("/sessao"))
+ if (
+  pathname.startsWith("/login") ||
+  pathname.startsWith("/signup") ||
+  pathname.startsWith("/sessao")
+ )
   return null
 
  return (
-  <nav className="bg-white border-b w-full md:text-sm sticky top-0">
+  <nav className="bg-white border-b w-full md:text-sm sticky top-0 z-[10]">
    <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
     <div className="flex items-center justify-between py-3 md:py-5 md:block">
      <Link href="/">

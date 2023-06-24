@@ -10,7 +10,7 @@ const poppins = Poppins({
 })
 
 export const metadata = {
- title: "Flornago",
+ title: "Flor Nagô",
  description: "Onde nossa arte é a sua beleza!",
 }
 

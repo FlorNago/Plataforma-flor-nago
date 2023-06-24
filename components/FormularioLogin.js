@@ -14,7 +14,7 @@ export default function FormularioRegistro() {
  const router = useRouter()
  const [formularioRegistro, setFormularioRegistro] = useState({
   email: "",
-  senha: "",
+  password: "",
  })
  const [senhaVisivel, setSenhaVisivel] = useState(false)
 
@@ -108,8 +108,8 @@ export default function FormularioRegistro() {
 
     <input
      type={senhaVisivel ? "text" : "password"}
-     value={formularioRegistro.senha}
-     onChange={(event) => mudarValor("senha", event.target.value)}
+     value={formularioRegistro.password}
+     onChange={(event) => mudarValor("password", event.target.value)}
      id="Password"
      name="password"
      className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
