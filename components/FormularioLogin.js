@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 
 export default function FormularioRegistro() {
- const router = useRouter()
+    const router = useRouter()
  const [formularioRegistro, setFormularioRegistro] = useState({
   email: "",
   password: "",
@@ -26,9 +26,7 @@ export default function FormularioRegistro() {
     ({ ok, error }) => {
      if (!ok) {
       // A função não executou com sucesso...
-      throw new Error(
-       "Ocorreu um erro ao realizar o login, por favor tente novamente mais tarde"
-      )
+      throw new Error("Ocorreu um erro ao realizar o login, por favor tente novamente mais tarde")
      }
      if (error) {
       // Algum erro, ou erro de credenciais aconteceu
@@ -40,29 +38,11 @@ export default function FormularioRegistro() {
     }
    ),
    {
+    success: "Login realizado com sucesso!",
     pending: "Realizando login...",
-    sucess: "Login realizado com sucesso!",
-   }
-  )
-
-  signIn("credentials", { ...formularioRegistro, redirect: false }).then(
-   ({ ok, error }) => {
-    if (!ok) {
-     // A função não executou com sucesso...
-     toast.error(
-      "Ocorreu um erro ao realizar o login, por favor tente novamente mais tarde"
-     )
-     return
-    }
-    if (error) {
-     // Algum erro, ou erro de credenciais aconteceu
-     toast.error(error)
-     return
-    }
-
-    // Login foi sucesso
-    toast.success("Login realizado com sucesso!")
-    router.push("/sessao")
+    error: {render({data}) {
+        return data.message
+    }}
    }
   )
  }
@@ -79,7 +59,7 @@ export default function FormularioRegistro() {
  return (
   <form className="mt-8 grid grid-cols-6 gap-6" onSubmit={onSubmit} noValidate>
    <div className="col-span-6 relative">
-    <label htmlFor="Email" className="block text-sm font-medium text-primaria">
+    <label htmlFor="Email" className="block text-sm font-medium text-segunda">
      Email
     </label>
 
@@ -92,7 +72,7 @@ export default function FormularioRegistro() {
      placeholder="nome@exemplo.com"
      className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
     />
-    <div className="text-primaria">
+    <div className="text-segunda">
      <HiOutlineMail size={25} className="absolute right-4 top-[50%]" />
     </div>
    </div>
@@ -100,7 +80,7 @@ export default function FormularioRegistro() {
    <div className="col-span-6 relative">
     <label
      htmlFor="Password"
-     className="block text-sm font-medium text-primaria"
+     className="block text-sm font-medium text-segunda"
      placeholder="Senha"
     >
      Senha
@@ -116,7 +96,8 @@ export default function FormularioRegistro() {
     />
     <button
      onClick={() => setSenhaVisivel((valorAnterior) => !valorAnterior)}
-     className="text-primaria"
+     className="text-segunda"
+     type="button"
     >
      {senhaVisivel ? (
       <BsEye size={25} className="absolute right-4 top-[50%]" />

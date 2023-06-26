@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "autoprefixer": "10.4.14",
+    "flowbite": "^1.6.6",
+    "flowbite-react": "^0.4.9",
+    "i18next": "^23.2.3",
     "next": "^13.4.7",
     "next-auth": "^4.22.1",
     "postcss": "8.4.24",

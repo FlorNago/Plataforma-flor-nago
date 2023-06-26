@@ -5,7 +5,7 @@ import { GiPartyPopper } from "react-icons/gi"
 
 export default function BottombarComponent() {
  return (
-  <div class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-gray-50 border rounded-full bottom-4 left-1/2 sm:hidden">
+  <div class="fixed w-full h-16 max-w-lg -translate-x-1/2 bg-gray-50 border rounded-full bottom-4 left-1/2 sm:hidden z-10">
    <div class="grid h-full max-w-lg grid-cols-4 mx-auto">
     <button
      data-tooltip-target="tooltip-home"

@@ -4,16 +4,26 @@ import { useState } from "react"
 
 import InputMask from "react-input-mask-next"
 import { toast } from "react-toastify"
+import SenhaInputComponent from "./SenhaInputComponent"
+import { signIn } from "next-auth/react"
+import { useRouter } from "next/navigation"
 
-const listaDeSegmentos = ["Tranças", "Acessórios", "Maquiagem", "Cuidados"]
+const listaDeSegmentos = [
+ "Outros",
+ "Tranças",
+ "Acessórios",
+ "Maquiagem",
+ "Cuidados",
+]
 
 export default function FormularioRegistro() {
+ const router = useRouter()
  const [isProfessional, setIsProfessional] = useState(false)
  const [formularioRegistro, setFormularioRegistro] = useState({
   email: "",
   password: "",
   confirm_password: "",
-  date_birth: "",
+  birth_date: "",
   cpf: "",
   instagram: "",
   segments: [],
@@ -25,15 +35,19 @@ export default function FormularioRegistro() {
 
   toast.warn("Realizando cadastro, aguarde...")
 
-  const response = await fetch("/api/registro", {
-   method: "POST",
-   headers: { "Content-Type": "application/json" },
-   body: JSON.stringify({
-    ...formularioRegistro,
-    profissional: isProfessional,
-   }),
-  })
+  const response = await fetch(
+   `${isProfessional ? "/api/signup/professional" : "/api/signup/user"}`,
+   {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formularioRegistro),
+   }
+  )
 
+  if (response.status === 500) {
+   toast.error("Algo deu errado, tente novamente mais tarde!")
+   return
+  }
   if (response.status !== 201) {
    const data = await response.json()
    toast.error(data.message)
@@ -41,6 +55,39 @@ export default function FormularioRegistro() {
   }
 
   toast.success("Cadastro realizado com sucesso!")
+  const accountInformation = {
+   email: formularioRegistro.email,
+   password: formularioRegistro.password,
+  }
+
+  toast.promise(
+   signIn("credentials", { ...accountInformation, redirect: false }).then(
+    ({ ok, error }) => {
+     if (!ok) {
+      // A função não executou com sucesso...
+      throw new Error(
+       "Ocorreu um erro ao realizar o login, por favor tente novamente mais tarde"
+      )
+     }
+     if (error) {
+      // Algum erro, ou erro de credenciais aconteceu
+      throw new Error(error)
+     }
+
+     // Login foi sucesso
+     router.push("/sessao")
+    }
+   ),
+   {
+    success: "Login realizado com sucesso!",
+    pending: "Realizando login, por favor espere...",
+    error: {
+     render({ data }) {
+      return data.message
+     },
+    },
+   }
+  )
  }
 
  function onChange(propriedade, valor) {
@@ -85,40 +132,21 @@ export default function FormularioRegistro() {
      onChange={(event) => onChange("email", event.target.value)}
     />
    </div>
+   <SenhaInputComponent
+    text="Senha"
+    type="password"
+    id="password"
+    name="password"
+    onChange={(event) => onChange("password", event.target.value)}
+   />
+   <SenhaInputComponent
+    text="Repita sua senha"
+    type="password"
+    id="PasswordConfirmation"
+    name="PasswordConfirmation"
+    onChange={(event) => onChange("confirm_password", event.target.value)}
+   />
 
-   <div className="col-span-6 sm:col-span-3">
-    <label
-     htmlFor="Password"
-     className="block text-sm font-medium text-segunda"
-    >
-     Senha
-    </label>
-
-    <input
-     type="password"
-     id="Password"
-     name="password"
-     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-     onChange={(event) => onChange("senha", event.target.value)}
-    />
-   </div>
-
-   <div className="col-span-6 sm:col-span-3">
-    <label
-     htmlFor="PasswordConfirmation"
-     className="block text-sm font-medium text-segunda"
-    >
-     Confirme sua senha
-    </label>
-
-    <input
-     type="password"
-     id="PasswordConfirmation"
-     name="password_confirmation"
-     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-     onChange={(event) => onChange("confirmarSenha", event.target.value)}
-    />
-   </div>
    <div className="col-span-6 sm:col-span-3">
     <label
      htmlFor="data_nascimento"
@@ -132,7 +160,7 @@ export default function FormularioRegistro() {
      id="data_nascimento"
      name="data_nascimento"
      className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-     onChange={(event) => onChange("dataNascimento", event.target.value)}
+     onChange={(event) => onChange("birth_date", event.target.value)}
     />
    </div>
    {isProfessional && (
@@ -184,7 +212,7 @@ export default function FormularioRegistro() {
        name="celular"
        id="celular"
        className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm form-numer"
-       onChange={(event) => onChange("celular", event.target.value)}
+       onChange={(event) => onChange("phone_number", event.target.value)}
       />
      </div>
 
@@ -207,8 +235,8 @@ export default function FormularioRegistro() {
              return setFormularioRegistro((valoresAnterior) => {
               return {
                ...valoresAnterior,
-               ["segmento"]: valoresAnterior.segmento.filter(
-                (elemento) => elemento !== item
+               ["segments"]: valoresAnterior.segments.filter(
+                (elemento) => elemento !== index
                ),
               }
              })
@@ -216,7 +244,7 @@ export default function FormularioRegistro() {
             setFormularioRegistro((valoresAnterior) => {
              return {
               ...valoresAnterior,
-              ["segmento"]: [...valoresAnterior.segmento, item],
+              ["segments"]: [...valoresAnterior.segments, index],
              }
             })
            }}

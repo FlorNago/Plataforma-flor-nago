@@ -5,6 +5,7 @@ import Background from "@/imagens/Background.jpg"
 import MulherFlornago from "@/imagens/FlorLogoFinal.svg"
 
 import FormularioRegistro from "@/components/FormularioRegistro"
+import Link from "next/link"
 
 export default function SignUpPage() {
  return (
@@ -36,7 +37,9 @@ export default function SignUpPage() {
        </p>
       </div>
 
-      <Image src={FlornagoLogo} alt="" className="place-self-center mt-8" />
+      <Link href="/" className="place-self-center mt-8">
+       <Image src={FlornagoLogo} alt="" />
+      </Link>
 
       <FormularioRegistro />
      </div>

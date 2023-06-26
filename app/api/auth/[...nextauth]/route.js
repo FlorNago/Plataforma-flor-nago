@@ -11,7 +11,7 @@ export const authOptions = {
      throw new Error("Por favor, preencha todos os campos")
     }
 
-    const response = await fetch(`${process.env.BACKEND_URL}/autenticacao/login`, {
+    const response = await fetch(`${process.env.BACKEND_URL}/authentication/login`, {
         method: "POST",
         body: JSON.stringify(credentials),
         headers: { "Content-Type": "application/json" },
@@ -22,7 +22,6 @@ export const authOptions = {
     if (response.status !== 200) {
         throw new Error(data.message)
     }
-
 
     return data
    },
