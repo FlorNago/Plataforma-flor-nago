@@ -107,7 +107,7 @@ export default function BarraEsquerdaComponent() {
       <div>
        <p className="text-xs">
         <strong className="block font-medium text-left">
-         @{session?.user?.name}
+         @{session?.user?.username}
         </strong>
         <span> {session?.user?.email} </span>
        </p>

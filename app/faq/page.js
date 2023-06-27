@@ -15,7 +15,7 @@ export default function PaginaFAQ() {
     </p>
 
     <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2 xl:grid-cols-3">
-     <div className="flex flex-col items-center p-6 space-y-3 text-center bg-white-100 rounded-xl dark:bg-primaria">
+     <div className="flex flex-col items-center p-6 space-y-3 text-center bg-quarta rounded-lg dark:bg-primaria">
       <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-full dark:text-white dark:bg-terceira">
        <TbUserSearch className="w-6 h-6" />
       </span>
@@ -28,7 +28,7 @@ export default function PaginaFAQ() {
       </p>
      </div>
 
-     <div className="flex flex-col items-center p-6 space-y-3 text-center bg-white-100 rounded-xl dark:bg-primaria">
+     <div className="flex flex-col items-center p-6 space-y-3 text-center bg-terceira rounded-lg dark:bg-primaria">
       <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-full dark:text-white dark:bg-terceira">
        <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@ export default function PaginaFAQ() {
       </p>
      </div>
 
-     <div className="flex flex-col items-center p-6 space-y-3 text-center bg-white-100 rounded-xl dark:bg-primaria">
+     <div className="flex flex-col items-center p-6 space-y-3 text-center bg-segunda rounded-xl dark:bg-primaria">
       <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-full dark:text-white dark:bg-terceira">
        <MdOutlineAutoGraph />
       </span>

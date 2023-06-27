@@ -36,8 +36,19 @@ export const authOptions = {
    return token
   },
   session: async function ({ session, token }) {
+    const response = await fetch(`${process.env.BACKEND_URL}/user/information/${token.user_id}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    })
+
+    const data = await response.json()
+
+    if (response.status !== 200) {
+        throw new Error(data.message)
+    }
+    
    if (token) {
-    session.user = { ...token }
+    session.user = { ...data }
    }
 
    return session

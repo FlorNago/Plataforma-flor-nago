@@ -1,28 +1,40 @@
 "use client"
 
-import { getSession } from "next-auth/react"
+import { getSession, useSession } from "next-auth/react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
 
 import { AiOutlineUser } from "react-icons/ai"
 
 export default function ModalComponent({ session, open, callback }) {
+    const {update} = useSession()
+ const router = useRouter()
  const [preview, setPreview] = useState(null)
  const [image, setImage] = useState(null)
+ const [userInformation, setUserInformation] = useState({
+  username: session?.user?.username,
+  biography: session?.user?.biography,
+ })
 
  const fileInputRef = useRef()
 
- async function deleteUserPhoto() {
-    const response = await fetch("/api/user/edit/profile/photo", {
-     method: "DELETE",
-    })
-    
-    if (response.status !== 200) {
-        // TODO: amanusear quando a remoção der erro
-        return
-    }
+ function changeInput(property, value) {
+  setUserInformation((previous) => ({ ...previous, [property]: value }))
+ }
 
-    console.log("imagem removida com sucesso!")
+ async function deleteUserPhoto() {
+  const response = await fetch("/api/user/edit/profile/photo", {
+   method: "DELETE",
+  })
+
+  if (response.status !== 200) {
+   // TODO: amanusear quando a remoção der erro
+   return
+  }
+
+  console.log("imagem removida com sucesso!")
+  update()
  }
 
  async function updateUserProfile() {
@@ -41,7 +53,24 @@ export default function ModalComponent({ session, open, callback }) {
    return
   }
 
-  console.log("imagem upload com sucesso!")
+  update()
+ }
+
+ async function updateUserInformation(event) {
+  event.preventDefault()
+
+  const response = await fetch("/api/user/edit/profile/information", {
+   method: "PUT",
+   body: JSON.stringify(userInformation),
+   headers: { "Content-Type": "application/json" },
+  })
+
+  if (response.status !== 200) {
+   const data = await response.json()
+   return console.log(data.message)
+  }
+
+  update()
  }
 
  function onFileSelected(event) {
@@ -91,7 +120,7 @@ export default function ModalComponent({ session, open, callback }) {
       </button>
      </div>
      {/* <!-- Modal body --> */}
-     <form action="#">
+     <form onSubmit={updateUserInformation}>
       <div className="grid gap-4 mb-4 sm:grid-cols-2">
        <div className="sm:col-span-2 flex items-center gap-4">
         {preview ? (
@@ -143,15 +172,15 @@ export default function ModalComponent({ session, open, callback }) {
 
           {preview ? (
            <button
-           onClick={() => {
-            setPreview(null)
-            fileInputRef.current.value = ""
-           }}
-           type="button"
-           className="border box-border normal-case cursor-pointer inline-flex items-center text-center text-xs leading-4 font-medium bg-none m-0 px-3 py-2 rounded-lg border-solid"
-          >
-           Remover previa
-          </button>
+            onClick={() => {
+             setPreview(null)
+             fileInputRef.current.value = ""
+            }}
+            type="button"
+            className="border box-border normal-case cursor-pointer inline-flex items-center text-center text-xs leading-4 font-medium bg-none m-0 px-3 py-2 rounded-lg border-solid"
+           >
+            Remover previa
+           </button>
           ) : (
            <button
             onClick={deleteUserPhoto}
@@ -171,13 +200,19 @@ export default function ModalComponent({ session, open, callback }) {
         >
          Nome de usuário
         </label>
-        <input
-         type="text"
-         name="name"
-         id="name"
-         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-         placeholder="@meunome"
-        />
+        <div class="flex">
+         <span class="self-stretch inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+          @
+         </span>
+         <input
+          type="text"
+          class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="meu_usuario"
+          value={userInformation.username}
+          disabled={session?.user?.username}
+          onChange={(e) => changeInput("username", e.target.value)}
+         />
+        </div>
        </div>
        <div className="sm:col-span-2">
         <label
@@ -191,6 +226,9 @@ export default function ModalComponent({ session, open, callback }) {
          rows="5"
          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
          placeholder="Fale um pouco sobre você"
+         defaultValue={session?.user?.biography}
+         value={userInformation.biography}
+         onChange={(e) => changeInput("biography", e.target.value)}
         />
        </div>
       </div>

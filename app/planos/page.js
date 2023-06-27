@@ -11,7 +11,7 @@ const plans = [
   features: [
     "Mais visibilidade",
     "Sorteios Exclusivos",
-    "SUporte Prioritário",
+    "Suporte Prioritário",
     "Selo de verificação"
   ],
  },

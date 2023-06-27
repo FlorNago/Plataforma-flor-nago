@@ -1,4 +1,13 @@
+"use client"
+
+import { useSession } from "next-auth/react"
+import Link from "next/link"
+import { AiOutlinePlus } from "react-icons/ai"
+
 export default function TopbarComponent() {
+ const { data: session } = useSession()
+ console.table(session?.user)
+
  return (
   <header className="bg-gray-50 border-b sticky top-0">
    <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
@@ -38,6 +47,14 @@ export default function TopbarComponent() {
       </button>
      </div>
 
+     {session?.user?.professional && (
+      <Link
+       href="/sessao/criar"
+       className="block shrink-0 rounded-full bg-white p-2.5 text-segunda shadow-sm hover:text-gray-700"
+      >
+       <AiOutlinePlus className="h-5 w-5" />
+      </Link>
+     )}
      <a
       href="#"
       className="block shrink-0 rounded-full bg-white p-2.5 text-segunda shadow-sm hover:text-gray-700"
