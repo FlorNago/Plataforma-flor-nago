@@ -22,5 +22,8 @@ public class UserVO {
     private String phone_number;
     private List<SegmentData> segments;
     private Boolean professional;
+
+    private List<UserVO> followers;
+    private List<UserVO> following; 
     
 }

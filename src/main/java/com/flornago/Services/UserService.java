@@ -80,7 +80,7 @@ public class UserService {
         userRepository.save(userModel);
     }
 
-    public UserVO getUserInformation(Long userId)  {
+    public UserVO getUserInformation(Long userId) {
         UserModel userModel = findUserById(userId);
         return userModelToUserVO(userModel);
     }
@@ -98,6 +98,17 @@ public class UserService {
         return userModel;
     }
 
+    public List<UserVO> covertUserModelListToUserVOList(List<UserModel> userModelList) {
+        List<UserVO> userVOList = new ArrayList<>();
+        for (UserModel userModel : userModelList) {
+            UserVO userVO = new UserVO();
+            BeanUtils.copyProperties(userModel, userVO);
+            userVOList.add(userVO);
+        }
+
+        return userVOList;
+    }
+
     public UserVO userModelToUserVO(UserModel userModel) {
         UserVO userVO = new UserVO();
         BeanUtils.copyProperties(userModel, userVO);
@@ -113,7 +124,30 @@ public class UserService {
             userVO.setSegments(segments);
         }
 
+        List<UserVO> followersListVO = covertUserModelListToUserVOList(userModel.getFollowers());
+        List<UserVO> followingListVO = covertUserModelListToUserVOList(userModel.getFollowing());
+
+        userVO.setFollowers(followersListVO);
+        userVO.setFollowing(followingListVO);
+
         return userVO;
     }
 
+    public void followUser(Long user_following_id, Long user_id) {
+        UserModel user_following = findUserById(user_following_id);
+        UserModel user = findUserById(user_id);
+
+        user_following.follow(user);
+        userRepository.save(user_following);
+        userRepository.save(user);
+    }
+
+    public void unfollowUser(Long user_unfollowing_id, Long user_id) {
+        UserModel user_unfollowing = findUserById(user_unfollowing_id);
+        UserModel user = findUserById(user_id);
+        
+        user_unfollowing.unfollow(user);
+        userRepository.save(user_unfollowing);
+        userRepository.save(user);
+    }
 }

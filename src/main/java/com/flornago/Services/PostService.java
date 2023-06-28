@@ -48,7 +48,6 @@ public class PostService {
 
         List<CommentModel> commentModels = postModel.getComments();
         List<CommentVO> commentVOs = new ArrayList<>();
-        ;
 
         for (CommentModel commentModel : commentModels) {
             CommentVO commentVO = convertCommentModelToVO(commentModel);
