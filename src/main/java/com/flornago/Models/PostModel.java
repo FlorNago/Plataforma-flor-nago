@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
@@ -30,7 +31,7 @@ public class PostModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long post_id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private UserModel post_owner;
 
