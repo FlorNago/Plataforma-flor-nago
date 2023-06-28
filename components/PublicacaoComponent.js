@@ -1,26 +1,29 @@
 import Image from "next/image"
+import { AiOutlineUser } from "react-icons/ai"
 
 export default function PublicacaoComponent({
- usuario,
- texto,
- fotoPerfil,
- fotoPublicacao,
+    post_id, post_owner, created_at, title, description, image_url, likes, comments
 }) {
  return (
   <div class="max-w-md container bg-white rounded-xl shadow-lg">
    <div class="flex items-center space-x-2 px-2 py-4">
-    <Image
-     class="w-10 rounded-full"
-     src={fotoPerfil.src}
-     alt="sara"
-     width={40}
-     height={40}
-    />
-    <h2 class="text-gray-800 font-bold cursor-pointer">{usuario}</h2>
+    {post_owner.image_url ? (
+
+        <Image
+         class="w-10 h-10 rounded-full"
+         src={post_owner.image_url}
+         alt=""
+         width={40}
+         height={40}
+        />
+    ) : (
+        <AiOutlineUser size={40} className="w-10 h-10 rounded-full"/>
+    )}
+    <h2 class="text-gray-800 font-bold cursor-pointer">{post_owner.username}</h2>
    </div>
    <Image
     class="w-full cursor-pointer"
-    src={fotoPublicacao.src}
+    src={image_url}
     alt=""
     width={1280}
     height={720}
@@ -29,7 +32,7 @@ export default function PublicacaoComponent({
     <div class="flex justify-between">
      <div>
       <h2 class="text-2xl font-bold text-gray-800 cursor-pointer hover:text-gray-900 transition duration-100">
-       {texto}
+       {title}
       </h2>
      </div>
     </div>
@@ -51,7 +54,7 @@ export default function PublicacaoComponent({
         />
        </svg>
       </span>
-      <span>22</span>
+      <span>{comments.length}</span>
      </div>
      <div class="flex space-x-1 items-center">
       <span>
@@ -68,7 +71,7 @@ export default function PublicacaoComponent({
         />
        </svg>
       </span>
-      <span>20</span>
+      <span>{likes}</span>
      </div>
     </div>
    </div>
