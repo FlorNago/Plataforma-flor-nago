@@ -9,7 +9,7 @@ export default function TopbarComponent() {
  console.table(session?.user)
 
  return (
-  <header className="bg-gray-50 border-b sticky top-0">
+  <header className="bg-gray-50 border-b sticky top-0 z-40">
    <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
     <div className="flex items-center justify-end gap-4">
      <div className="relative w-full">

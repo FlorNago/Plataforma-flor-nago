@@ -29,7 +29,7 @@ export default function BarraEsquerdaComponent() {
 
  return (
   <>
-   <div className="flex h-screen flex-col justify-between border-e bg-white sticky left-0 top-0 max-sm:hidden">
+   <div className="flex h-screen flex-col justify-between border-e bg-white sticky left-0 top-0 max-sm:hidden z-50">
     <div className="px-4 py-6">
      <Image src={FlornagoLogo} alt="" width={200} />
 
