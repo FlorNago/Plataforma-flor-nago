@@ -2,24 +2,32 @@ import Image from "next/image"
 import { AiOutlineUser } from "react-icons/ai"
 
 export default function PublicacaoComponent({
-    post_id, post_owner, created_at, title, description, image_url, likes, comments
+ post_id,
+ post_owner,
+ created_at,
+ title,
+ description,
+ image_url,
+ likes,
+ comments,
 }) {
  return (
-  <div class="max-w-md container bg-white rounded-xl shadow-lg">
+  <div class="max-w-3xl container bg-white rounded-xl shadow-lg">
    <div class="flex items-center space-x-2 px-2 py-4">
     {post_owner.image_url ? (
-
-        <Image
-         class="w-10 h-10 rounded-full"
-         src={post_owner.image_url}
-         alt=""
-         width={40}
-         height={40}
-        />
+     <Image
+      class="w-10 h-10 rounded-full"
+      src={post_owner.image_url}
+      alt=""
+      width={40}
+      height={40}
+     />
     ) : (
-        <AiOutlineUser size={40} className="w-10 h-10 rounded-full"/>
+     <AiOutlineUser size={40} className="w-10 h-10 rounded-full" />
     )}
-    <h2 class="text-gray-800 font-bold cursor-pointer">{post_owner.username}</h2>
+    <h2 class="text-gray-800 font-bold cursor-pointer">
+     {post_owner.username}
+    </h2>
    </div>
    <Image
     class="w-full cursor-pointer"

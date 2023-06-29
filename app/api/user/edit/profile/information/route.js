@@ -7,6 +7,8 @@ export async function PUT(request) {
     if (!session) return NextResponse.json({ message: "Você precisa estar em uma sessão para realizar esta ação" }, { status: 401 })
 
     const { username, biography } = await request.json()
+    const regex = /^[a-zA-Z0-9_]+$/
+    if (!regex.test(username)) return NextResponse.json({ message: "O nome de usuário só pode conter letras, números e _" }, { status: 400 })
 
     const response = await fetch(`${process.env.BACKEND_URL}/user/update/${session.user.user_id}`, {
         method: "PUT",
