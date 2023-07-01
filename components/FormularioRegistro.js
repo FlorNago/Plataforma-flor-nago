@@ -82,7 +82,7 @@ export default function FormularioRegistro() {
      }
 
      // Login foi sucesso
-     router.push("/sessao")
+     router.push("/sessao/novo-usuario")
     }
    ),
    {

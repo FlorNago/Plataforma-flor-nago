@@ -5,7 +5,7 @@ import PlanosComp from "@/components/PlanosComponnent"
 const plans = [
  {
   name: "Pro",
-  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  desc: "",
   price: "29,90",
   isMostPop: true,
   features: [
@@ -17,7 +17,7 @@ const plans = [
  },
  {
   name: "Básico",
-  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  desc: "",
   price: "9,99",
   isMostPop: false,
   features: [

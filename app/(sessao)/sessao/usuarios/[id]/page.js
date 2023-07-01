@@ -127,7 +127,7 @@ export default async function PaginaDePerfil({ params }) {
            )
           })
          ) : (
-          <p className="text-gray-400">Usuário regular</p>
+          <p className="text-gray-400">Cliente</p>
          )}
         </div>
         <div className="mt-10 py-10 border-t border-gray-300 text-center">
