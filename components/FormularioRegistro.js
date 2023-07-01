@@ -7,6 +7,7 @@ import { toast } from "react-toastify"
 import SenhaInputComponent from "./SenhaInputComponent"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import CirculoCarregamentoComponent from "./CirculoCarregamentoComponent"
 
 const listaDeSegmentos = [
  "Outros",
@@ -29,9 +30,11 @@ export default function FormularioRegistro() {
   segments: [],
   phone_number: "",
  })
+ const [loading, setLoading] = useState(false)
 
  async function onSubmit(event) {
   event.preventDefault()
+  setLoading(() => true)
 
   toast.warn("Realizando cadastro, aguarde...")
 
@@ -46,11 +49,13 @@ export default function FormularioRegistro() {
 
   if (response.status === 500) {
    toast.error("Algo deu errado, tente novamente mais tarde!")
+   setLoading(() => false)
    return
   }
   if (response.status !== 201) {
    const data = await response.json()
    toast.error(data.message)
+   setLoading(() => false)
    return
   }
 
@@ -65,12 +70,14 @@ export default function FormularioRegistro() {
     ({ ok, error }) => {
      if (!ok) {
       // A função não executou com sucesso...
+      setLoading(() => false)
       throw new Error(
        "Ocorreu um erro ao realizar o login, por favor tente novamente mais tarde"
       )
      }
      if (error) {
       // Algum erro, ou erro de credenciais aconteceu
+      setLoading(() => false)
       throw new Error(error)
      }
 
@@ -264,7 +271,11 @@ export default function FormularioRegistro() {
    )}
 
    <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-    <button className="inline-block shrink-0 rounded-md border border-segunda bg-segunda px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-segunda focus:outline-none focus:ring active:text-segunda">
+    <button
+     disabled={loading}
+     className="flex items-center shrink-0 rounded-md border border-segunda bg-segunda px-12 py-3 text-sm font-medium text-white transition focus:outline-none focus:ring active:text-segunda"
+    >
+     {loading && <CirculoCarregamentoComponent />}
      Crie sua conta
     </button>
 

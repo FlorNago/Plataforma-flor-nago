@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
 
 import { AiOutlineUser } from "react-icons/ai"
+import CirculoCarregamentoComponent from "./CirculoCarregamentoComponent"
+import { toast } from "react-toastify"
 
 export default function ModalComponent({ session, open, callback }) {
-    const {update} = useSession()
+ const { update } = useSession()
  const router = useRouter()
  const [preview, setPreview] = useState(null)
  const [image, setImage] = useState(null)
@@ -16,6 +18,9 @@ export default function ModalComponent({ session, open, callback }) {
   username: session?.user?.username,
   biography: session?.user?.biography,
  })
+ const [informationLoading, setInformationLoading] = useState(false)
+ const [imageLoading, setImageLoading] = useState(false)
+ const [deleteImageLoading, setDeleteImageLoading] = useState(false)
 
  const fileInputRef = useRef()
 
@@ -24,21 +29,27 @@ export default function ModalComponent({ session, open, callback }) {
  }
 
  async function deleteUserPhoto() {
+  setDeleteImageLoading(() => true)
   const response = await fetch("/api/user/edit/profile/photo", {
    method: "DELETE",
   })
 
   if (response.status !== 200) {
-   // TODO: amanusear quando a remoção der erro
+   const data = await response.json()
+   toast.error(data.message)
+   setDeleteImageLoading(() => false)
    return
   }
 
-  console.log("imagem removida com sucesso!")
   update()
+  setDeleteImageLoading(() => false)
+  toast.success("Foto de perfil removida com sucesso")
+  router.refresh()
  }
 
  async function updateUserProfile() {
   if (!image) return
+  setImageLoading(() => true)
 
   const formData = new FormData()
   formData.append("image", image)
@@ -49,15 +60,22 @@ export default function ModalComponent({ session, open, callback }) {
   })
 
   if (response.status !== 200) {
-   // TODO: manusear quando o upload der erro
+   const data = await response.json()
+   toast.error(data.message)
+   setImageLoading(() => false)
    return
   }
 
   update()
+  setImageLoading(() => false)
+  toast.success("Foto de perfil atualizada com sucesso")
+  setPreview(() => null)
+  router.refresh()
  }
 
  async function updateUserInformation(event) {
   event.preventDefault()
+  setInformationLoading(() => true)
 
   const response = await fetch("/api/user/edit/profile/information", {
    method: "PUT",
@@ -67,10 +85,15 @@ export default function ModalComponent({ session, open, callback }) {
 
   if (response.status !== 200) {
    const data = await response.json()
-   return console.log(data.message)
+   toast.error(data.message)
+   setInformationLoading(() => false)
+   return
   }
 
   update()
+  setInformationLoading(() => false)
+  toast.success("Informações atualizadas com sucesso")
+  router.refresh()
  }
 
  function onFileSelected(event) {
@@ -164,9 +187,11 @@ export default function ModalComponent({ session, open, callback }) {
          <div className="flex items-center gap-2">
           <button
            onClick={updateUserProfile}
+           disabled={imageLoading}
            type="button"
            className="border bg-segunda text-white box-border normal-case cursor-pointer inline-flex items-center text-center text-xs leading-4 font-medium bg-none m-0 px-3 py-2 rounded-lg border-solid"
           >
+           {imageLoading && <CirculoCarregamentoComponent />}
            Salvar
           </button>
 
@@ -184,9 +209,11 @@ export default function ModalComponent({ session, open, callback }) {
           ) : (
            <button
             onClick={deleteUserPhoto}
+            disabled={deleteImageLoading}
             type="button"
-            className="border border-red-500 text-red-500 box-border normal-case cursor-pointer inline-flex items-center text-center text-xs leading-4 font-medium bg-none m-0 px-3 py-2 rounded-lg border-solid"
+            className="border bg-red-500 text-white box-border normal-case cursor-pointer inline-flex items-center text-center text-xs leading-4 font-medium bg-none m-0 px-3 py-2 rounded-lg border-solid"
            >
+            {deleteImageLoading && <CirculoCarregamentoComponent />}
             Remover foto do perfil
            </button>
           )}
@@ -207,9 +234,8 @@ export default function ModalComponent({ session, open, callback }) {
          <input
           type="text"
           class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="meu_usuario"
-          value={userInformation.username}
-          disabled={session?.user?.username}
+          placeholder={session?.user?.username !== "Usuário não informado" && session?.user?.username || "meu_usuario"}
+          disabled={session?.user?.username && session?.user?.username !== "Usuário não informado"}
           onChange={(e) => changeInput("username", e.target.value)}
          />
         </div>
@@ -234,9 +260,11 @@ export default function ModalComponent({ session, open, callback }) {
       </div>
       <div className="flex items-center space-x-4">
        <button
+        disabled={informationLoading}
         type="submit"
-        className="text-white bg-segunda focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        className="text-white flex items-center bg-segunda focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
        >
+        {informationLoading && <CirculoCarregamentoComponent />}
         Terminar edição
        </button>
       </div>

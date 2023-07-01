@@ -1,5 +1,7 @@
 import Image from "next/image"
+import Link from "next/link"
 import { AiOutlineUser } from "react-icons/ai"
+import CurtidaComponent from "./CurtidaComponent"
 
 export default function PublicacaoComponent({
  post_id,
@@ -11,77 +13,82 @@ export default function PublicacaoComponent({
  likes,
  comments,
 }) {
+
  return (
-  <div class="max-w-3xl container bg-white rounded-xl shadow-lg">
-   <div class="flex items-center space-x-2 px-2 py-4">
-    {post_owner.image_url ? (
+  <div className="grid place-content-center px-8">
+   <div className="bg-white shadow rounded-lg">
+    <div className="flex flex-row px-2 py-3 mx-3">
+     <Link
+      href={`/sessao/usuarios/${post_owner.user_id}`}
+      className="w-14 h-14 grid place-content-center rounded-full border-2 border-green-500 cursor-pointer shadow"
+     >
+      {post_owner.image_url ? (
+       <Image
+        src={image_url}
+        width={48}
+        height={48}
+        className="w-12 h-12 object-cover rounded-full"
+        alt=""
+       />
+      ) : (
+       <AiOutlineUser
+        size={48}
+        className="w-12 h-12 object-cover rounded-full"
+       />
+      )}
+     </Link>
+     <div className="flex flex-col mb-2 ml-4 mt-1">
+      <div className="text-gray-600 text-sm font-semibold">
+       @{post_owner.username}
+      </div>
+      <div className="flex w-full mt-1 gap-2 flex-wrap">
+       {post_owner.segments &&
+        post_owner.segments.map((segment) => {
+         return (
+          <div className="text-blue-700 font-base text-xs mr-1 cursor-pointer">
+           • {segment.name}
+          </div>
+         )
+        })}
+      </div>
+     </div>
+    </div>
+    <div className="border-b border-gray-100" />
+    <div className="text-gray-400 font-medium text-sm mb-7 mt-6 mx-3 px-2">
      <Image
-      class="w-10 h-10 rounded-full"
-      src={post_owner.image_url}
-      alt=""
-      width={40}
-      height={40}
+      className="rounded w-full max-w-[720px] h-[720px] object-cover"
+      src={image_url}
+      width={1280}
+      height={720}
+      aspectRatio={16 / 9}
      />
-    ) : (
-     <AiOutlineUser size={40} className="w-10 h-10 rounded-full" />
-    )}
-    <h2 class="text-gray-800 font-bold cursor-pointer">
-     {post_owner.username}
-    </h2>
-   </div>
-   <Image
-    class="w-full cursor-pointer"
-    src={image_url}
-    alt=""
-    width={1280}
-    height={720}
-   />
-   <div className="p-4">
-    <div class="flex justify-between">
-     <div>
-      <h2 class="text-2xl font-bold text-gray-800 cursor-pointer hover:text-gray-900 transition duration-100">
-       {title}
-      </h2>
+    </div>
+    <div className="text-gray-600 font-semibold  mb-2 mx-3 px-2">{title}</div>
+    <div className="text-gray-500 text-sm mb-6 mx-3 px-2">{description}</div>
+    <div className="flex justify-start mb-4">
+     <div className="flex justify-end w-full mt-1 pt-2 pr-5">
+      <CurtidaComponent id={post_id} likesList={likes} />
      </div>
     </div>
-    <div class="flex space-x-2">
-     <div class="flex space-x-1 items-center">
-      <span>
-       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-7 w-7 text-gray-600 cursor-pointer"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-       >
-        <path
-         stroke-linecap="round"
-         stroke-linejoin="round"
-         stroke-width="2"
-         d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-        />
-       </svg>
-      </span>
-      <span>{comments.length}</span>
+    <div className="flex w-full">
+     <div className="mt-3 mx-5 flex flex-row text-xs">
+      <div className="flex text-gray-700 font-normal rounded-md mb-2 mr-4 items-center">
+       Comentários:
+       <div className="ml-1 text-gray-400 text-ms"> {comments.length}</div>
+      </div>
      </div>
-     <div class="flex space-x-1 items-center">
-      <span>
-       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-7 w-7 text-red-500 hover:text-red-400 transition duration-100 cursor-pointer"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-       >
-        <path
-         fill-rule="evenodd"
-         d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-         clip-rule="evenodd"
-        />
-       </svg>
-      </span>
-      <span>{likes}</span>
+     <div className="mt-3 mx-5 w-full flex justify-end text-xs">
+      <div className="flex text-gray-700  rounded-md mb-2 mr-4 items-center">
+       Curtidas:{" "}
+       <div className="ml-1 text-gray-400 text-ms"> {likes.length}</div>
+      </div>
      </div>
     </div>
+    <Link className="flex w-full p-3" href={`/sessao/publicacao/${post_id}`}>
+     <p className="py-3 text-center rounded-lg bg-segunda w-full text-white">
+      Acessar publicação
+     </p>
+    </Link>
    </div>
   </div>
  )

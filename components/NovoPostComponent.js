@@ -1,9 +1,13 @@
 "use client"
 
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
+import { toast } from "react-toastify"
+import CirculoCarregamentoComponent from "./CirculoCarregamentoComponent"
 
 export default function NovoPostComponent() {
+   const router = useRouter()
  const fileInputRef = useRef()
  const [preview, setPreview] = useState(null)
  const [image, setImage] = useState(null)
@@ -11,6 +15,7 @@ export default function NovoPostComponent() {
   title: "",
   description: "",
  })
+ const [loading, setLoading] = useState(false)
 
  function onFileSelected(event) {
   const { files } = event.target
@@ -23,33 +28,53 @@ export default function NovoPostComponent() {
  }
 
  function changeInformationValue(property, value) {
-    setPostInformation((prev) => ({ ...prev, [property]: value }))
+  setPostInformation((prev) => ({ ...prev, [property]: value }))
  }
 
- async function newPost(event) {
-    event.preventDefault()
+ async function newPost() {
+  setLoading(() => true)
 
-    const formData = new FormData()
-    formData.append("image", image)
-    formData.append("data", JSON.stringify(postInformation))
+  const formData = new FormData()
+  formData.append("image", image)
+  formData.append("data", JSON.stringify(postInformation))
 
-    const response = await fetch("/api/post", {
-         method: "POST",
-         body: formData,
-    }) 
+  const response = await fetch("/api/post", {
+   method: "POST",
+   body: formData,
+  })
 
-    if (response.status !== 201) {
-      // TODO - Tratar erros
-      const data = await response.json()
-      console.log(data.message)
-      return
-    }
+  const data = await response.json()
 
-    console.log("publicação publicada!")
+  if (response.status !== 201) {
+   setLoading(() => false)
+   throw new Error(data.message)
+  }
+
+  router.push(`/sessao/publicacao/${data.message}`)
+ }
+
+ function formsSubmited(event) {
+   event.preventDefault()
+
+   toast.promise(
+      newPost,
+      {
+         pending: "Publicando, por favor aguarde...",
+         success: "Publicado com sucesso!",
+         error: {
+            render({ data }) {
+               return data.message
+            }
+         }
+      }
+   )
  }
 
  return (
-  <form className="bg-gray-100 rounded-lg p-8 grid gap-8 place-content-center" onSubmit={newPost}>
+  <form
+   className="bg-gray-100 rounded-lg p-8 grid gap-8 place-content-center"
+   onSubmit={formsSubmited}
+  >
    <div>
     <label
      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -122,14 +147,18 @@ export default function NovoPostComponent() {
      rows="5"
      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
      placeholder="Descreva a sua publicação"
-     onChange={(event) => changeInformationValue("description", event.target.value)}
+     onChange={(event) =>
+      changeInformationValue("description", event.target.value)
+     }
     />
    </div>
 
    <button
     type="submit"
-    className="place-self-end text-white bg-segunda focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+    disabled={loading}
+    className="place-self-end flex items-center text-white bg-segunda focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
    >
+    {loading && <CirculoCarregamentoComponent />}
     Publicar
    </button>
   </form>

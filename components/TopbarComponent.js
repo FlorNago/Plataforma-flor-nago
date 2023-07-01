@@ -6,7 +6,6 @@ import { AiOutlinePlus } from "react-icons/ai"
 
 export default function TopbarComponent() {
  const { data: session } = useSession()
- console.table(session?.user)
 
  return (
   <header className="bg-gray-50 border-b sticky top-0 z-40">

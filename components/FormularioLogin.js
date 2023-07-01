@@ -9,27 +9,34 @@ import { BsEye, BsEyeFill } from "react-icons/bs"
 import { HiOutlineMail } from "react-icons/hi"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
+import CirculoCarregamentoComponent from "./CirculoCarregamentoComponent"
 
 export default function FormularioRegistro() {
-    const router = useRouter()
+ const router = useRouter()
  const [formularioRegistro, setFormularioRegistro] = useState({
   email: "",
   password: "",
  })
  const [senhaVisivel, setSenhaVisivel] = useState(false)
+ const [loading, setLoading] = useState(false)
 
  function onSubmit(event) {
   event.preventDefault()
+  setLoading(() => true)
 
   toast.promise(
    signIn("credentials", { ...formularioRegistro, redirect: false }).then(
     ({ ok, error }) => {
      if (!ok) {
       // A função não executou com sucesso...
-      throw new Error("Ocorreu um erro ao realizar o login, por favor tente novamente mais tarde")
+      setLoading(() => false)
+      throw new Error(
+       "Ocorreu um erro ao realizar o login, por favor tente novamente mais tarde"
+      )
      }
      if (error) {
       // Algum erro, ou erro de credenciais aconteceu
+      setLoading(() => false)
       throw new Error(error)
      }
 
@@ -40,9 +47,11 @@ export default function FormularioRegistro() {
    {
     success: "Login realizado com sucesso!",
     pending: "Realizando login...",
-    error: {render({data}) {
-        return data.message
-    }}
+    error: {
+     render({ data }) {
+      return data.message
+     },
+    },
    }
   )
  }
@@ -108,7 +117,8 @@ export default function FormularioRegistro() {
    </div>
 
    <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-    <button className="inline-block shrink-0 rounded-md border border-segunda bg-segunda px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-segunda focus:outline-none focus:ring active:text-segunda">
+    <button disabled={loading} className="flex items-center shrink-0 rounded-md border border-segunda bg-segunda px-12 py-3 text-sm font-medium text-white transition focus:outline-none focus:ring active:text-segunda">
+     {loading && <CirculoCarregamentoComponent />}
      Realizar login
     </button>
 

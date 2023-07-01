@@ -2,6 +2,7 @@ import Image from "next/image"
 
 import Background from "@/imagens/Background.jpg"
 import { AiOutlineUser } from "react-icons/ai"
+import Link from "next/link"
 
 async function getUser(user_id) {
  const response = await fetch(
@@ -20,9 +21,26 @@ async function getUser(user_id) {
  return data
 }
 
+async function getPostsByUser(user_id) {
+ const response = await fetch(
+  `${process.env.BACKEND_URL}/post/user/${user_id}`,
+  {
+   method: "GET",
+   headers: {
+    "Content-Type": "application/json",
+   },
+   cache: "no-store",
+  }
+ )
+
+ const data = await response.json()
+
+ return data
+}
+
 export default async function PaginaDePerfil({ params }) {
  const user = await getUser(params.id)
- console.log(user)
+ const posts = await getPostsByUser(params.id)
 
  return (
   <main className="profile-page">
@@ -128,8 +146,23 @@ export default async function PaginaDePerfil({ params }) {
        <div className="bg-white w-full shadow-xl rounded-lg">
         <div className="p-6">
          <div className="grid justify-items-center grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2">
-          {Array.from({length: 16}, (_, i) => {
-            return <Image className="w-[300px] h-[300px] object-cover" src={Background} alt="" width={300} height={300} />
+          {posts.map((post) => {
+           return (
+            <Link
+            className="group"
+             href={`/sessao/publicacao/${post.post_id}`}
+             style={{
+              backgroundImage: `url('${post.image_url}')`,
+              width: "300px",
+              height: "300px",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              display: "grid"
+             }}
+            >
+              <p className="bg-black/20 self-end text-center text-white transition-all h-0 group-hover:p-5 group-hover:h-auto">{post.title}</p>
+            </Link>
+           )
           })}
          </div>
         </div>

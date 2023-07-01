@@ -13,22 +13,23 @@ export async function POST(request) {
     if (!formData.get("image") ||formData.get("image") === "null") return NextResponse.json({ message: "Nenhuma imagem foi enviada" }, { status: 400 })
     if (!formData.get("data") || formData.get("data") === "null") return NextResponse.json({ message: "Nenhum dado foi enviado" }, { status: 400 })
 
-    const data = JSON.parse(formData.get("data"))
-    if (!Object.values(data).every(value => value.length > 0)) return NextResponse.json({ message: "Nenhum dado foi enviado" }, { status: 400 })
+    const dataForm = JSON.parse(formData.get("data"))
+    if (!Object.values(dataForm).every(value => value.length > 0)) return NextResponse.json({ message: "Nenhum dado foi enviado" }, { status: 400 })
     
     const newFormData = new FormData()
     newFormData.append("image", formData.get("image"))
-    newFormData.append("content", JSON.stringify(data))
+    newFormData.append("content", JSON.stringify(dataForm))
 
     const response = await fetch(`${process.env.BACKEND_URL}/post/create/${session.user.user_id}`, {
         method: "POST",
         body: newFormData
     })
 
+    const data = await response.json()
+
     if (response.status !== 201) {
-        const data = await response.json()
         return NextResponse.json({ message: data.message }, { status: response.status })
     }
 
-    return NextResponse.json({message: "Sucesso!"}, { status: 201 })
+    return NextResponse.json({message: data}, { status: 201 })
 }
