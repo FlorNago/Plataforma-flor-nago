@@ -17,5 +17,5 @@ public class PostVO {
     private String description;
     private String image_url;
     private List<CommentVO> comments;
-    private Integer likes;
+    private List<UserVO> likes;
 }

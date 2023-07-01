@@ -29,11 +29,23 @@ public class PostContoller {
     public List<PostVO> getAllPosts() {
         return postService.getAllPost();
     }
+
+    @GetMapping("/{post_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public PostVO getPostById(@PathVariable Long post_id) {
+        return postService.getPostById(post_id);
+    }
+
+    @GetMapping("/user/{user_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PostVO> getPostByUserId(@PathVariable Long user_id) {
+        return postService.getPostByUserId(user_id);
+    }
     
     @PostMapping("/create/{user_id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createPost(@PathVariable Long user_id, @RequestParam("image") MultipartFile image, @RequestParam("content") String content) {
-        postService.createPost(user_id, content, image);
+    public Long createPost(@PathVariable Long user_id, @RequestParam("image") MultipartFile image, @RequestParam("content") String content) {
+        return postService.createPost(user_id, content, image);
     }
 
     @PutMapping("/action/{post_id}/{user_id}")

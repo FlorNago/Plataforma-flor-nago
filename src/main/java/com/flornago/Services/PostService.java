@@ -20,6 +20,7 @@ import com.flornago.Models.UserModel;
 import com.flornago.Repository.PostRepository;
 import com.flornago.ViewObject.CommentVO;
 import com.flornago.ViewObject.PostVO;
+import com.flornago.ViewObject.UserVO;
 
 @Service
 public class PostService {
@@ -33,6 +34,17 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
+    public List<PostModel> getPostModelsByOwnerId(Long user_id) {
+        UserModel userModel = userService.findUserById(user_id);
+        Optional<List<PostModel>> postModels = postRepository.findByPost_owner(userModel);
+
+        if (!postModels.isPresent()) {
+            return new ArrayList<>();
+        }
+
+        return postModels.get();
+    }
+
     public CommentVO convertCommentModelToVO(CommentModel commentModel) {
         CommentVO commentVO = new CommentVO();
         BeanUtils.copyProperties(commentModel, commentVO);
@@ -44,16 +56,19 @@ public class PostService {
     public PostVO convertPostModelToVO(PostModel postModel) {
         PostVO postVO = new PostVO();
         BeanUtils.copyProperties(postModel, postVO);
-        postVO.setLikes(postModel.getLikes().size());
 
-        List<CommentModel> commentModels = postModel.getComments();
         List<CommentVO> commentVOs = new ArrayList<>();
-
-        for (CommentModel commentModel : commentModels) {
+        for (CommentModel commentModel : postModel.getComments()) {
             CommentVO commentVO = convertCommentModelToVO(commentModel);
             commentVOs.add(commentVO);
         }
 
+        List<UserVO> likesVO = new ArrayList<>();
+        for (UserModel userModel : postModel.getLikes()) {
+            likesVO.add(userService.userModelToUserVO(userModel));
+        }
+
+        postVO.setLikes(likesVO);
         postVO.setComments(commentVOs);
         postVO.setPost_owner(userService.userModelToUserVO(postModel.getPost_owner()));
 
@@ -81,11 +96,14 @@ public class PostService {
         }
     }
 
-    public void createPost(Long user_id, String content, MultipartFile image) {
+    public Long createPost(Long user_id, String content, MultipartFile image) {
         UserModel userModel = userService.findUserById(user_id);
-
+        System.out.println(userModel.getUser_id());
         if (userModel.getProfessional() == null || !userModel.getProfessional()) {
             throw new UnauthorizedException("Você não tem permissão para criar um post.");
+        }
+        if (userModel.getUsername() == null) {
+            throw new UnauthorizedException("Você precisa de um nome de usuário para comentar");
         }
 
         NewPostDTO newPostDTO = stringToNewPostDTO(content);
@@ -97,6 +115,7 @@ public class PostService {
         creatingPost.setPost_owner(userModel);
 
         postRepository.save(creatingPost);
+        return creatingPost.getPost_id();
     }
 
     public Boolean actionPost(Long post_id, Long user_id) {
@@ -117,6 +136,25 @@ public class PostService {
 
     public List<PostVO> getAllPost() {
         List<PostModel> postModels = postRepository.findAll();
+        List<PostVO> postVOs = new ArrayList<>();
+
+        for (PostModel postModel : postModels) {
+            PostVO postVO = convertPostModelToVO(postModel);
+            postVOs.add(postVO);
+        }
+
+        return postVOs;
+    }
+
+    public PostVO getPostById(Long post_id) {
+        PostModel postModel = findPostById(post_id);
+        PostVO postVO = convertPostModelToVO(postModel);
+
+        return postVO;
+    }
+
+    public List<PostVO> getPostByUserId(Long user_id) {
+        List<PostModel> postModels = getPostModelsByOwnerId(user_id);
         List<PostVO> postVOs = new ArrayList<>();
 
         for (PostModel postModel : postModels) {

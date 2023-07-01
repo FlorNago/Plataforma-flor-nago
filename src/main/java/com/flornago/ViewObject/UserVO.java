@@ -26,4 +26,18 @@ public class UserVO {
     private List<UserVO> followers;
     private List<UserVO> following; 
     
+    public String getUsername() {
+        if (username == null) {
+            return "Usuário não informado";
+        }
+        return username;
+    }
+
+    public String getInstagram() {
+        if (instagram == null) {
+            return "Instagram não informado";
+        }
+
+        return instagram;
+    }
 }

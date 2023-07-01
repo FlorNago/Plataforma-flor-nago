@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
@@ -25,7 +26,7 @@ public class CommentModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long comment_id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private UserModel comment_owner;
 
