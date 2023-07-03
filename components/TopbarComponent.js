@@ -51,7 +51,7 @@ export default function TopbarComponent() {
        href="/sessao/criar"
        className="block shrink-0 rounded-full bg-white p-2.5 text-segunda shadow-sm hover:text-gray-700"
       >
-       <AiOutlinePlus className="h-5 w-5" />
+       <AiOutlinePlus className="h-5 w-5 transition hover:scale-150 hover:text-segunda" />
       </Link>
      )}
      <a

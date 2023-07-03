@@ -36,7 +36,7 @@ export default async function PaginaDaPublicacao({ params }) {
      >
       {post.post_owner.image_url ? (
        <Image
-        src={image_url}
+        src={post.post_owner.image_url}
         width={48}
         height={48}
         className="w-12 h-12 object-cover rounded-full"

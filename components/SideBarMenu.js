@@ -9,6 +9,8 @@ import { FiSettings, FiUser } from "react-icons/fi"
 import { GiPartyPopper } from "react-icons/gi"
 import { AiOutlineHome, AiOutlineUser } from "react-icons/ai"
 import { BiLogOut } from "react-icons/bi"
+import { MdOutlineVerified} from "react-icons/md"
+import  Verficado from "@/imagens/verificado-1.svg"
 import ModalComponent from "./ModalComponent"
 import { useState } from "react"
 
@@ -16,6 +18,7 @@ const navigationList = [
  { nome: "HOME", href: "/sessao", icon: AiOutlineHome },
  { nome: "EVENTO", href: "/sessao/evento", icon: GiPartyPopper },
  { nome: "CONFIGURAÇÃO", href: "/sessao/configuracao", icon: FiSettings },
+ { nome: "PLANOS", href: "/sessao/planos", icon: MdOutlineVerified},
 ]
 
 export default function BarraEsquerdaComponent() {
@@ -39,7 +42,7 @@ export default function BarraEsquerdaComponent() {
         <li key={index}>
          <Link
           href={item.href}
-          className={`flex items-center gap-2 rounded px-4 py-2 text-sm font-medium text-segunda ${
+          className={`flex items-center gap-2 rounded px-4 py-2 text-sm font-medium text-segunda hover:scale-110 ${
            currentPath === item.href ? "bg-terceira/20" : "hover:bg-primaria/10"
           }`}
          >

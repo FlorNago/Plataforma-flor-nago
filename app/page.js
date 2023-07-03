@@ -15,13 +15,13 @@ export default () => {
      </p>
      <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
       <Link
-       href="/"
+       href="/sobre"
        className="px-7 py-3 w-full bg-segunda text-quarta text-center rounded-md shadow-md block sm:w-auto"
       >
        Veja Agora
       </Link>
       <Link
-       href="/"
+       href="/sobre"
        className="px-7 py-3 w-full bg-transparent border border-segunda text-segunda text-center rounded-md block sm:w-auto"
       >
        Saiba mais

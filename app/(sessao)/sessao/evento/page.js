@@ -1,5 +1,6 @@
 import Image from "next/image"
-import EventoFoto from "@/imagens/evento.svg"
+
+import EventoFoto from "@/imagens/instagrampost.png"
 
 export default function PaginaEvento() {
  return (
