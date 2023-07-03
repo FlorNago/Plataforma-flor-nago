@@ -17,10 +17,11 @@ public class CloudinaryService {
     private Cloudinary cloudinary;
 
     public CloudinaryService() {
+
         cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "dpmtqiciw",
-                "api_key", "992828574673236",
-                "api_secret", "90-2leep2h_pjdTd1XJdA5bDbH4"));
+                "cloud_name", "dzzsfr9ff",
+                "api_key", "469613247748918",
+                "api_secret", "N5nza7jBi5vkhcBkRUsk7sQWuM4"));
     }
 
     public String uploadImage(MultipartFile file) {
